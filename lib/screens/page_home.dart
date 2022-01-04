@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:healty/model/user.dart';
 import 'package:healty/screens/page_diet.dart';
-import 'package:healty/screens/summary_page.dart';
+import 'package:healty/screens/page_summary_page.dart';
 import 'package:provider/provider.dart';
 
-import 'add_new_diet.dart';
+import 'page_add_new_diet.dart';
 
 class MyHomePage extends StatefulWidget {
   final String username;
@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
     debugPrint('Building $runtimeType');
 
     return Scaffold(
-
+      backgroundColor: const Color(0xFFE9E9E9),
       appBar: (currentIndex == 1 || currentIndex == 2) ? null : AppBar(
         title: Text(_title),
         actions: [
@@ -60,6 +60,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        selectedIconTheme: const IconThemeData(
+          color: Colors.blueAccent
+        ),
+        unselectedIconTheme: const IconThemeData(
+          color: Colors.black12,
+        ),
         currentIndex: currentIndex,
         onTap: (index) {
           debugPrint("tab $index selected");

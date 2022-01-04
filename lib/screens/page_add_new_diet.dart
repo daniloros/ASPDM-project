@@ -7,6 +7,7 @@ class AddNewDiet extends StatelessWidget {
   Widget build(BuildContext context) {
     debugPrint('Building $runtimeType');
     return Scaffold(
+        backgroundColor: const Color(0xFFE9E9E9),
         appBar: AppBar(
           title: const Text('Aggiungi una nuova Dieta'),
         ),

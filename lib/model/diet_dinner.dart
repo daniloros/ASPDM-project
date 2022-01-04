@@ -35,4 +35,7 @@ class DietDinner extends Equatable {
   @override
   List<Object?> get props => [id];
 
+  factory DietDinner.fromJson(Map<String, dynamic> json) => _$DietDinnerFromJson(json);
+  Map<String, dynamic> toJson() => _$DietDinnerToJson(this);
+
 }

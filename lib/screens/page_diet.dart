@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:healty/controller/diet_page_controller.dart';
-import 'package:healty/model/diet_lunch.dart';
+import 'package:healty/screens/page_dinner_diet.dart';
+import 'package:healty/screens/page_lunch_diet.dart';
 import 'package:provider/provider.dart';
-import 'package:provider/src/provider.dart';
+
 
 class DietPage extends StatefulWidget {
   const DietPage({Key? key}) : super(key: key);
@@ -11,77 +12,65 @@ class DietPage extends StatefulWidget {
   State<DietPage> createState() => _DietPageState();
 }
 
-class _DietPageState extends State<DietPage> {
-  late List<DietLunch> dietLunchList;
+class _DietPageState extends State<DietPage>
+    with SingleTickerProviderStateMixin {
+
+  late TabController _ctrl;
 
   @override
   void initState() {
     super.initState();
-    dietLunchList = DietPageController().dietLunchList;
+    _ctrl = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     debugPrint('Building $runtimeType');
-    return MaterialApp(
-      title: 'Fetch Data Example',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-          appBar: AppBar(
-            title: const Text('Fetch Data Example'),
-            actions: [
-              IconButton(
-                onPressed: () {
-                  context.read<DietPageController>().loadDietLunch();
-                },
-                icon: const Icon(Icons.arrow_downward),
-                tooltip: "Load",
+    return Scaffold(
+        backgroundColor: const Color(0xFFE9E9E9),
+        appBar: AppBar(
+          title: const Text('Fetch Data Example'),
+          bottom: TabBar(
+            tabs: const [
+              Tab(
+                text: "Lunch",
+              ),
+              Tab(
+                text: "Dinner",
               ),
             ],
+            controller: _ctrl,
           ),
-          body: Stack(
-            fit: StackFit.expand,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                        child: Selector<DietPageController, int>(
-                      selector: (context, model) => model.count,
-                      builder: (context, value, _) {
-                        debugPrint("Building Selector con ListView");
-
-                        return ListView.builder(
-                            itemCount: value,
-                            itemBuilder: (context, index) {
-                              final item = context
-                                  .read<DietPageController>()
-                                  .dietLunchList[index];
-                              return Text("Diet ${item.id}");
-                            });
-                      },
-                    ))
-                  ],
-                ),
+        ),
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            TabBarView(
+                controller: _ctrl,
+                children: [
+                  LunchDietPage(),
+                  DinnerDietPage(),
+                ],
+            ),
+            Center(
+              child: Selector<DietPageController, bool>(
+                selector: (context, state) => state.isLoading,
+                builder: (context, isLoading, _) {
+                  if (isLoading) {
+                    return const CircularProgressIndicator();
+                  } else {
+                    return const SizedBox.shrink();
+                  }
+                },
               ),
-              Center(
-                child: Selector<DietPageController, bool>(
-                  selector: (context, state) => state.isLoading,
-                  builder: (context, isLoading, _) {
-                    if (isLoading) {
-                      return const CircularProgressIndicator();
-                    } else {
-                      return const SizedBox.shrink();
-                    }
-                  },
-                ),
-              )
-            ],
-          )),
-    );
+            )
+          ],
+        ));
   }
 }
