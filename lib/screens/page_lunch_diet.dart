@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:healty/controller/diet_page_controller.dart';
+import 'package:healty/model/user.dart';
 import 'package:healty/widgets/diet_lunch_widget.dart';
 import 'package:provider/provider.dart';
-import 'package:provider/src/provider.dart';
 
 class LunchDietPage extends StatefulWidget {
   const LunchDietPage({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class _LunchDietPage extends State<LunchDietPage> {
     super.initState();
 
     SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
-      context.read<DietPageController>().loadDietLunch();
+      context.read<DietPageController>().loadDietLunch(context.read<User>().username);
     });
 
 
@@ -40,18 +40,6 @@ class _LunchDietPage extends State<LunchDietPage> {
           fit: StackFit.expand,
           children: [
             DietLunchWidget(),
-            Center(
-              child: Selector<DietPageController, bool>(
-                selector: (context, state) => state.isLoading,
-                builder: (context, isLoading, _) {
-                  if (isLoading) {
-                    return const CircularProgressIndicator();
-                  } else {
-                    return const SizedBox.shrink();
-                  }
-                },
-              ),
-            )
           ],
         ));
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:healty/controller/diet_page_controller.dart';
 import 'package:healty/model/user.dart';
 import 'package:healty/screens/page_diet.dart';
 import 'package:healty/screens/page_summary_page.dart';
@@ -52,6 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(
             onPressed: () {
               context.read<User>().logout();
+              context.read<DietPageController>().logout();
             },
             icon: const Icon(Icons.logout),
             tooltip: "Logout",
