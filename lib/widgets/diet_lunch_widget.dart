@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:healty/controller/diet_page_controller.dart';
-import 'package:healty/model/diet_lunch.dart';
-import 'package:healty/screens/page_diet_lunch_details.dart';
+import 'package:healty/model/diet.dart';
 import 'package:provider/provider.dart';
 
-import 'diet_lunch_list_widget.dart';
+import 'diet_details.dart';
+import 'diet_list_widget.dart';
 
 class DietLunchWidget extends StatelessWidget {
   const DietLunchWidget({Key? key}) : super(key: key);
@@ -20,7 +20,7 @@ class DietLunchWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: Selector<DietPageController, DietLunch?>(
+            child: Selector<DietPageController, Diet?>(
               selector: (context, model) => model.currentLunchDiet,
               builder: (context, value, _) {
                 debugPrint("Building Selector con ListView");
@@ -35,7 +35,7 @@ class DietLunchWidget extends StatelessWidget {
                         return GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => DietLunchDetails(item!)));
+                                builder: (context) => DietDetails(item!)));
                           },
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,9 +97,9 @@ class DietLunchWidget extends StatelessWidget {
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) =>
-                                      DietLunchDetails(item)));
+                                      DietDetails(item)));
                             },
-                            child: DietLunchItemDisplayer(item),
+                            child: DietItemDisplayer(item),
                           );
                         });
                   }

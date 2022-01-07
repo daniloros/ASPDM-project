@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'diet_dinner.g.dart';
+part 'diet.g.dart';
 
 @JsonSerializable()
-class DietDinner extends Equatable {
+class Diet extends Equatable {
   @JsonKey(name: '_id', required: false)
   String id;
   String userId;
@@ -18,7 +18,7 @@ class DietDinner extends Equatable {
   int vegetableGr;
   bool isCurrent;
 
-  DietDinner(
+  Diet(
       this.id,
       this.userId,
       this.carbo,
@@ -35,7 +35,7 @@ class DietDinner extends Equatable {
   @override
   List<Object?> get props => [id];
 
-  factory DietDinner.fromJson(Map<String, dynamic> json) => _$DietDinnerFromJson(json);
-  Map<String, dynamic> toJson() => _$DietDinnerToJson(this);
+  factory Diet.fromJson(Map<String, dynamic> json) => _$DietFromJson(json);
+  Map<String, dynamic> toJson() => _$DietToJson(this);
 
 }

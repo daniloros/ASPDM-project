@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'diet_lunch.dart';
+part of 'diet.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-DietLunch _$DietLunchFromJson(Map<String, dynamic> json) => DietLunch(
+Diet _$DietFromJson(Map<String, dynamic> json) => Diet(
       json['_id'] as String,
       json['userId'] as String,
       json['carbo'] as String,
@@ -20,7 +20,7 @@ DietLunch _$DietLunchFromJson(Map<String, dynamic> json) => DietLunch(
       json['isCurrent'] as bool,
     );
 
-Map<String, dynamic> _$DietLunchToJson(DietLunch instance) => <String, dynamic>{
+Map<String, dynamic> _$DietToJson(Diet instance) => <String, dynamic>{
       '_id': instance.id,
       'userId': instance.userId,
       'carbo': instance.carbo,

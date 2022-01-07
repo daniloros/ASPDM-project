@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:healty/model/diet_dinner.dart';
+import 'package:healty/model/diet.dart';
 
-class DietDinnerItemDisplayer extends StatelessWidget {
-  final DietDinner item;
+class DietItemDisplayer extends StatelessWidget {
+  final Diet item;
 
-  DietDinnerItemDisplayer(this.item);
+  DietItemDisplayer(this.item);
 
   @override
   Widget build(BuildContext context) {

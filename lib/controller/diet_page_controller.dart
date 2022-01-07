@@ -1,16 +1,15 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:healty/model/diet_dinner.dart';
-import 'package:healty/model/diet_lunch.dart';
+import 'package:healty/model/diet.dart';
 import 'package:healty/providers/diet_provider.dart';
 
 class DietPageController extends ChangeNotifier {
-  List<DietLunch> _dietLunchList = [];
+  List<Diet> _dietLunchList = [];
 
   int get countLunch => _dietLunchList.length;
 
-  List<DietDinner> _dietDinnerList = [];
+  List<Diet> _dietDinnerList = [];
 
   int get countDinner => _dietDinnerList.length;
 
@@ -18,19 +17,19 @@ class DietPageController extends ChangeNotifier {
 
   bool get isLoading => _isLoading;
 
-  UnmodifiableListView<DietLunch> get dietLunchList =>
+  UnmodifiableListView<Diet> get dietLunchList =>
       UnmodifiableListView(_dietLunchList);
 
-  UnmodifiableListView<DietDinner> get dietDinnerList =>
+  UnmodifiableListView<Diet> get dietDinnerList =>
       UnmodifiableListView(_dietDinnerList);
 
-  DietLunch? _currentLunchDiet;
+  Diet? _currentLunchDiet;
 
-  DietDinner? _currentDinnerDiet;
+  Diet? _currentDinnerDiet;
 
-  DietDinner? get currentDinnerDiet => _currentDinnerDiet;
+  Diet? get currentDinnerDiet => _currentDinnerDiet;
 
-  DietLunch? get currentLunchDiet => _currentLunchDiet;
+  Diet? get currentLunchDiet => _currentLunchDiet;
 
   Future loadDietLunch(String? username, [bool force = false]) async {
     debugPrint("IsLoadingLunch ${_isLoading.toString()}");

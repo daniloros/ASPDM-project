@@ -1,20 +1,20 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:healty/model/diet_dinner.dart';
-import 'package:healty/model/diet_lunch.dart';
+import 'package:healty/model/diet.dart';
 import 'package:http/http.dart' as http;
 
 class DietProvider {
-  List<DietLunch> _dietLunchList = [];
+  List<Diet> _dietLunchList = [];
 
-  List<DietLunch> get dietLunchList => _dietLunchList;
+  List<Diet> get dietLunchList => _dietLunchList;
 
-  List<DietLunch> _dietDinnerList = [];
+  List<Diet> _dietDinnerList = [];
 
-  List<DietLunch> get dietDinnerList => _dietDinnerList;
+  List<Diet> get dietDinnerList => _dietDinnerList;
 
-  static Future<List<DietLunch>> loadLunchDiet(String username) async {
+
+  static Future<List<Diet>> loadLunchDiet(String username) async {
     debugPrint("Loading lunch diet list");
 
     final response = await http.get(
@@ -30,7 +30,7 @@ class DietProvider {
       List<dynamic> lunchResponse = jsonDecode(response.body);
       final lunchItemData = lunchResponse
           .cast<Map<String, dynamic>>()
-          .map((e) => DietLunch.fromJson(e))
+          .map((e) => Diet.fromJson(e))
           .toList();
       return lunchItemData;
     } else {
@@ -38,7 +38,7 @@ class DietProvider {
     }
   }
 
-  static Future<List<DietDinner>> loadDinnerDiet(String username) async {
+  static Future<List<Diet>> loadDinnerDiet(String username) async {
     debugPrint("Loading dinner list diet");
 
     final response = await http.get(
@@ -54,7 +54,7 @@ class DietProvider {
       List<dynamic> dinnerResponse = jsonDecode(response.body);
       final dinnerItemData = dinnerResponse
           .cast<Map<String, dynamic>>()
-          .map((e) => DietDinner.fromJson(e))
+          .map((e) => Diet.fromJson(e))
           .toList();
       return dinnerItemData;
     } else {
@@ -62,7 +62,7 @@ class DietProvider {
     }
   }
 
-  static Future<DietLunch> loadCurrentLunchDiet(String username) async {
+  static Future<Diet> loadCurrentLunchDiet(String username) async {
     debugPrint("Loading current lunch diet");
 
     final response = await http.get(
@@ -79,16 +79,16 @@ class DietProvider {
       debugPrint("jsonResponse ${jsonResponse.length}");
       if(jsonResponse.isEmpty){
         debugPrint("jsonResponse is empty");
-        return DietLunch("", "", "", 0, "", 0, "", 0, "", 0, false);
+        return Diet("", "", "", 0, "", 0, "", 0, "", 0, false);
       } else {
-        return DietLunch.fromJson(jsonDecode(response.body)[0]);
+        return Diet.fromJson(jsonDecode(response.body)[0]);
       }
     } else {
       throw Exception("Errore di comunicazione");
     }
   }
 
-  static Future<DietDinner> loadCurrentDinnerDiet(String username) async {
+  static Future<Diet> loadCurrentDinnerDiet(String username) async {
     debugPrint("Loading current dinner diet");
 
     final response = await http.get(
@@ -104,9 +104,9 @@ class DietProvider {
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body);
       if(jsonResponse.isEmpty){
-        return DietDinner("", "", "", 0, "", 0, "", 0, "", 0, false);
+        return Diet("", "", "", 0, "", 0, "", 0, "", 0, false);
       } else {
-        return DietDinner.fromJson(jsonDecode(response.body)[0]);
+        return Diet.fromJson(jsonDecode(response.body)[0]);
       }
     }  else {
       throw Exception("Errore di comunicazione");

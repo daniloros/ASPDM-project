@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:healty/controller/diet_page_controller.dart';
-import 'package:healty/model/diet_dinner.dart';
-import 'package:healty/screens/page_diet_dinner_details.dart';
+import 'package:healty/model/diet.dart';
 import 'package:provider/provider.dart';
 
-import 'diet_dinner_list_widget.dart';
+import 'diet_details.dart';
+import 'diet_list_widget.dart';
 
 class DietDinnerWidget extends StatelessWidget {
   const DietDinnerWidget({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class DietDinnerWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: Selector<DietPageController, DietDinner?>(
+            child: Selector<DietPageController, Diet?>(
               selector: (context, model) => model.currentDinnerDiet,
               builder: (context, value, _) {
                 debugPrint("Building Selector con ListView");
@@ -35,7 +35,7 @@ class DietDinnerWidget extends StatelessWidget {
                         return GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => DietDinnerDetails(item!)));
+                                builder: (context) => DietDetails(item!)));
                           },
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,9 +94,9 @@ class DietDinnerWidget extends StatelessWidget {
                       return GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => DietDinnerDetails(item)));
+                              builder: (context) => DietDetails(item)));
                         },
-                        child: DietDinnerItemDisplayer(item),
+                        child: DietItemDisplayer(item),
                       );
                     });
               }
