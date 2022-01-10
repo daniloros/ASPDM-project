@@ -35,13 +35,11 @@ class _SummaryState extends State<Summary> {
     debugPrint('Building $runtimeType');
     return Scaffold(
         backgroundColor: const Color(0xFFE9E9E9),
-        body: SafeArea(
-            child: Center(
-          child: Column(
-            children: const [
-              SummaryWidget(),
-            ],
-          ),
-        )));
+        body: Stack(
+          children: [
+            SummaryWidget(),
+          ],
+        ),
+        );
   }
 }

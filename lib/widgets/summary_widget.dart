@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 
 import 'package:vector_math/vector_math_64.dart' as math;
 
-
 class SummaryWidget extends StatelessWidget {
   const SummaryWidget({Key? key}) : super(key: key);
 
@@ -14,141 +13,196 @@ class SummaryWidget extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
-    return Container(
-      color: Colors.white,
-      padding: EdgeInsets.only(top: 50, left: 32, right: 16, bottom: 10),
-      child: Builder(builder: (context) {
-        final item = context.read<LoginController>().currentUser;
-        if (item == null) {
-          return const SizedBox();
-        } else {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ListTile(
-                title: Text(
-                  "Hello, ${item.username}",
-                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
-                ),
-                //trailing: ClipOval(child: Image.asset("inserisci url di photo")),
-              ),
-              Row(
-                children: [
-                  _RadialProgress(
-                    width: width * 0.4,
-                    height: height * 0.5,
-                    progress: 0.7,
-                    user: item,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          _DietProgress(
-                            ingredient: "Lean Mass",
-                            progress: item.leanMass! / 100,
-                            progressColor: Colors.green,
-                            leftAmount: item.leanMass!.toInt(),
-                            width: width * 0.28,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 15),
-                            child: Text("${item.leanMass!} kg"),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        children: [
-                          _DietProgress(
-                            ingredient: "Body Fat",
-                            progress: item.bodyFat! / 100,
-                            progressColor: Colors.red,
-                            leftAmount: item.bodyFat!.toInt(),
-                            width: width * 0.28,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 15),
-                            child: Text(
-                                "${((item.bodyFat! * item.weight!) / 100).toStringAsPrecision(2)} kg"),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              ListTile(
-                subtitle: Text(
-                  "clicca qui per vedere i dettagli del tuo ultimo check",
-                  style: TextStyle(color: Colors.blue),
-                ),
-                onTap: () {
-                  Dialog alert= Dialog(
-                   // title: const Text("La tua condizione fisica"),
-                    child: Stack(
-                      children: [
-                        Container(
-                        padding: EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: Selector<LoginController, User?>(
+              selector: (context, model) => model.currentUser,
+              builder: (context, value, _) {
+                debugPrint("Building Selector con ListView");
+                if (value == null) {
+                  return const Text("Wait");
+                } else {
+                  return Builder(builder: (context) {
+                    final item = context.read<LoginController>().currentUser;
+                    return item == null
+                        ? const SizedBox()
+                        : Container(
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                            boxShadow: [
-                              BoxShadow(color: Colors.black,offset: Offset(0,10),
-                                  blurRadius: 10
-                              ),
-                            ]
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Weight: ${item.weight} kg", style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
-                            SizedBox(height: 15,),
-                            Text("BMR: ${item.bmr} %", style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
-                            SizedBox(height: 15,),
-                            Text("Hydration: ${item.hydro} %", style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
-                            SizedBox(height: 15,),
-                            Text("Body Fat: ${item.bodyFat} %", style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
-                            SizedBox(height: 15,),
-                            Text("Lean Mass: ${item.leanMass} kg", style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
-                            SizedBox(height: 15,),
-                            Align(
-                              alignment: Alignment.bottomRight,
-                              child: ElevatedButton(
-                                  onPressed: (){
-                                    Navigator.of(context).pop();
+                            padding: EdgeInsets.only(
+                                top: 50, left: 32, right: 16, bottom: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ListTile(
+                                  title: Text(
+                                    "Hello, ${item.username}",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400, fontSize: 18),
+                                  ),
+                                  //trailing: ClipOval(child: Image.asset("inserisci url di photo")),
+                                ),
+                                Row(
+                                  children: [
+                                    _RadialProgress(
+                                      width: width * 0.4,
+                                      height: height * 0.5,
+                                      progress: 0.7,
+                                      user: item,
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            _DietProgress(
+                                              ingredient: "Lean Mass",
+                                              progress: item.leanMass! / 100,
+                                              progressColor: Colors.green,
+                                              leftAmount: item.leanMass!.toInt(),
+                                              width: width * 0.28,
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.only(top: 15),
+                                              child: Text("${item.leanMass!} kg"),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        Row(
+                                          children: [
+                                            _DietProgress(
+                                              ingredient: "Body Fat",
+                                              progress: item.bodyFat! / 100,
+                                              progressColor: Colors.red,
+                                              leftAmount: item.bodyFat!.toInt(),
+                                              width: width * 0.28,
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.only(top: 15),
+                                              child: Text(
+                                                  "${((item.bodyFat! * item.weight!) / 100).toStringAsPrecision(2)} kg"),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                                ListTile(
+                                  subtitle: Text(
+                                    "clicca qui per vedere i dettagli del tuo ultimo check",
+                                    style: TextStyle(color: Colors.blue),
+                                  ),
+                                  onTap: () {
+                                    Dialog alert = Dialog(
+                                      // title: const Text("La tua condizione fisica"),
+                                      child: Stack(
+                                        children: [
+                                          Container(
+                                            padding: EdgeInsets.all(20),
+                                            decoration: BoxDecoration(
+                                                shape: BoxShape.rectangle,
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                      color: Colors.black,
+                                                      offset: Offset(0, 10),
+                                                      blurRadius: 10),
+                                                ]),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text("Weight: ${item.weight} kg",
+                                                    style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w600)),
+                                                SizedBox(
+                                                  height: 15,
+                                                ),
+                                                Text("BMR: ${item.bmr} %",
+                                                    style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w600)),
+                                                SizedBox(
+                                                  height: 15,
+                                                ),
+                                                Text("Hydration: ${item.hydro} %",
+                                                    style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w600)),
+                                                SizedBox(
+                                                  height: 15,
+                                                ),
+                                                Text("Body Fat: ${item.bodyFat} %",
+                                                    style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w600)),
+                                                SizedBox(
+                                                  height: 15,
+                                                ),
+                                                Text(
+                                                    "Lean Mass: ${item.leanMass} kg",
+                                                    style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w600)),
+                                                SizedBox(
+                                                  height: 15,
+                                                ),
+                                                Align(
+                                                  alignment: Alignment.bottomRight,
+                                                  child: ElevatedButton(
+                                                      onPressed: () {
+                                                        Navigator.of(context).pop();
+                                                      },
+                                                      child: Text(
+                                                        "Chiudi",
+                                                        style:
+                                                            TextStyle(fontSize: 18),
+                                                      )),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return alert;
+                                      },
+                                    );
                                   },
-                                  child: Text("Chiudi",style: TextStyle(fontSize: 18),)),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
-                      ],
-                    ),
-
-                  );
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return alert;
-                    },
-                  );
-                },
-              ),
-            ],
-          );
-        }
-      }),
+                          );
+                  });
+                }
+              }),
+        ),
+      ],
     );
   }
 }
