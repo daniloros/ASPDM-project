@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:healty/controller/login_controller.dart';
 import 'package:healty/screens/page_login.dart';
 import 'package:provider/provider.dart';
 
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => User()..load()),
         ChangeNotifierProvider(create: (context) => DietPageController()),
+        ChangeNotifierProvider(create: (context) => LoginController()),
       ],
       child: MaterialApp(
         title: "My first Flutter app",

@@ -78,6 +78,10 @@ flutter:
     - assets/images/diet-lunch-photo.jpg
     - assets/images/diet-dinner-photo.jpg
     - assets/images/carboidrati_image.png
+    - assets/images/carbohydrates.png
+    - assets/images/lipids.png
+    - assets/images/vegetable.png
+    - assets/images/proteins_photo.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
