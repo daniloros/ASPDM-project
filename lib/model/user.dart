@@ -7,6 +7,7 @@ part 'user.g.dart';
 @JsonSerializable()
 class User extends ChangeNotifier {
   String? username, password;
+  int? id;
   bool? admin;
   @JsonKey(name: 'peso', required: false)
   double? weight;
@@ -18,12 +19,15 @@ class User extends ChangeNotifier {
   double? hydro;
   int? bmr;
 
-  User({this.username, this.password, this.admin, this.weight, this.leanMass, this.bodyFat, this.hydro, this.bmr});
+  @JsonKey(name: 'nome', required: false)
+  String? name;
+  @JsonKey(name: 'cognome', required: false)
+  String? surname;
+  @JsonKey(name: 'dataNascita', required: false)
+  String? birthday;
 
-  // User.fromJson(Map<String, dynamic> json)
-  //     : username = json['username'],
-  //       password = json['password'],
-  //       admin = json['admin'];
+
+  User({this.id, this.username, this.password, this.admin, this.weight, this.leanMass, this.bodyFat, this.hydro, this.bmr, this.name, this.surname, this.birthday});
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
   Map<String, dynamic> toJson() => _$UserToJson(this);

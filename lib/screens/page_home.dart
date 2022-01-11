@@ -21,9 +21,9 @@ class _MyHomePageState extends State<MyHomePage> {
   late String _title;
 
   final screens = [
-    Summary(),
-    DietPage(),
-    AddNewDiet(),
+    const Summary(),
+    const DietPage(),
+    const AddNewDiet(),
   ];
 
 

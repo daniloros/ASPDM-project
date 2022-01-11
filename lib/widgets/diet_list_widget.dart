@@ -11,7 +11,7 @@ class DietItemDisplayer extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(right: 20, bottom: 10),
       child: Material(
-        borderRadius: BorderRadius.all(const Radius.circular(20)),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
         elevation: 4,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

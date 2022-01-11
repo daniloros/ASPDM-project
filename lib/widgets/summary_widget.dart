@@ -22,7 +22,18 @@ class SummaryWidget extends StatelessWidget {
               builder: (context, value, _) {
                 debugPrint("Building Selector con ListView");
                 if (value == null) {
-                  return const Text("Wait");
+                  return Center(
+                    child: Selector<LoginController, bool>(
+                      selector: (context, state) => state.isLoading,
+                      builder: (context, isLoading, _) {
+                        if (isLoading) {
+                          return const CircularProgressIndicator();
+                        } else {
+                          return const SizedBox.shrink();
+                        }
+                      },
+                    ),
+                  );
                 } else {
                   return Builder(builder: (context) {
                     final item = context.read<LoginController>().currentUser;
@@ -30,7 +41,7 @@ class SummaryWidget extends StatelessWidget {
                         ? const SizedBox()
                         : Container(
                             color: Colors.white,
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 top: 50, left: 32, right: 16, bottom: 10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +49,7 @@ class SummaryWidget extends StatelessWidget {
                                 ListTile(
                                   title: Text(
                                     "Hello, ${item.username}",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.w400, fontSize: 18),
                                   ),
                                   //trailing: ClipOval(child: Image.asset("inserisci url di photo")),
@@ -51,7 +62,7 @@ class SummaryWidget extends StatelessWidget {
                                       progress: 0.7,
                                       user: item,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     Column(
@@ -76,7 +87,7 @@ class SummaryWidget extends StatelessWidget {
                                             ),
                                           ],
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 20,
                                         ),
                                         Row(
@@ -101,7 +112,7 @@ class SummaryWidget extends StatelessWidget {
                                   ],
                                 ),
                                 ListTile(
-                                  subtitle: Text(
+                                  subtitle: const Text(
                                     "clicca qui per vedere i dettagli del tuo ultimo check",
                                     style: TextStyle(color: Colors.blue),
                                   ),
@@ -111,13 +122,13 @@ class SummaryWidget extends StatelessWidget {
                                       child: Stack(
                                         children: [
                                           Container(
-                                            padding: EdgeInsets.all(20),
+                                            padding: const EdgeInsets.all(20),
                                             decoration: BoxDecoration(
                                                 shape: BoxShape.rectangle,
                                                 color: Colors.white,
                                                 borderRadius:
                                                     BorderRadius.circular(5),
-                                                boxShadow: [
+                                                boxShadow: const [
                                                   BoxShadow(
                                                       color: Colors.black,
                                                       offset: Offset(0, 10),
@@ -129,44 +140,44 @@ class SummaryWidget extends StatelessWidget {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text("Weight: ${item.weight} kg",
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         fontSize: 18,
                                                         fontWeight:
                                                             FontWeight.w600)),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 15,
                                                 ),
-                                                Text("BMR: ${item.bmr} %",
-                                                    style: TextStyle(
+                                                Text("BMR: ${item.bmr} kcal",
+                                                    style: const TextStyle(
                                                         fontSize: 18,
                                                         fontWeight:
                                                             FontWeight.w600)),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 15,
                                                 ),
                                                 Text("Hydration: ${item.hydro} %",
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         fontSize: 18,
                                                         fontWeight:
                                                             FontWeight.w600)),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 15,
                                                 ),
                                                 Text("Body Fat: ${item.bodyFat} %",
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         fontSize: 18,
                                                         fontWeight:
                                                             FontWeight.w600)),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 15,
                                                 ),
                                                 Text(
                                                     "Lean Mass: ${item.leanMass} kg",
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         fontSize: 18,
                                                         fontWeight:
                                                             FontWeight.w600)),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 15,
                                                 ),
                                                 Align(
@@ -175,7 +186,7 @@ class SummaryWidget extends StatelessWidget {
                                                       onPressed: () {
                                                         Navigator.of(context).pop();
                                                       },
-                                                      child: Text(
+                                                      child: const Text(
                                                         "Chiudi",
                                                         style:
                                                             TextStyle(fontSize: 18),
@@ -219,7 +230,7 @@ class _RadialProgress extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomPaint(
       painter: _RadialPainter(user: user),
-      child: Container(
+      child: SizedBox(
         height: height,
         width: width,
         child: Center(
@@ -228,18 +239,18 @@ class _RadialProgress extends StatelessWidget {
             text: TextSpan(
               children: [
                 TextSpan(
-                    text: "${user!.weight.toString()}",
-                    style: TextStyle(
+                    text: user!.weight.toString(),
+                    style: const TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.w700,
-                        color: const Color(0xFF200087))),
-                TextSpan(text: "\n"),
-                TextSpan(
+                        color: Color(0xFF200087))),
+                const TextSpan(text: "\n"),
+                const TextSpan(
                     text: "KG",
                     style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
-                        color: const Color(0xFF200087))),
+                        color: Color(0xFF200087))),
               ],
             ),
           ),
@@ -287,12 +298,9 @@ class _RadialPainter extends CustomPainter {
         false,
         paint2);
 
-    debugPrint(((user!.bodyFat! * user!.weight!) / 100).toString());
-
     canvas.drawArc(Rect.fromCircle(center: center, radius: size.width / 2),
         math.radians(65), math.radians(360 - (user!.leanMass!)), false, paint3);
 
-    debugPrint((user!.leanMass!).toString());
   }
 
   @override
@@ -323,7 +331,7 @@ class _DietProgress extends StatelessWidget {
       children: [
         Text(
           ingredient!.toUpperCase(),
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w700,
           ),
@@ -337,7 +345,7 @@ class _DietProgress extends StatelessWidget {
                 Container(
                   height: 10,
                   width: width,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                     color: Colors.black12,
                   ),
@@ -346,13 +354,13 @@ class _DietProgress extends StatelessWidget {
                   height: 10,
                   width: width! * progress!,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     color: progressColor,
                   ),
                 ),
               ],
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             // Text("${leftAmount} g left")
           ],
         )

@@ -3,6 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:healty/controller/login_controller.dart';
 import 'package:healty/model/user.dart';
 import 'package:healty/widgets/summary_widget.dart';
+import 'package:provider/provider.dart';
 import 'package:provider/src/provider.dart';
 
 class Summary extends StatefulWidget {
@@ -36,7 +37,7 @@ class _SummaryState extends State<Summary> {
     return Scaffold(
         backgroundColor: const Color(0xFFE9E9E9),
         body: Stack(
-          children: [
+          children: const [
             SummaryWidget(),
           ],
         ),
