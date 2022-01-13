@@ -76,7 +76,6 @@ class _AdminPageState extends State<AdminPage> {
                           },
                         ),
                       ),
-                      // const _LengthDisplayer(),
                     ])),
             // Selector<GalleryState, bool>(
             //   builder: (context, isLoading, _) {

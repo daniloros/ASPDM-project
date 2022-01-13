@@ -7,7 +7,8 @@ part 'user.g.dart';
 @JsonSerializable()
 class User extends ChangeNotifier {
   String? username, password;
-  int? id;
+  @JsonKey(name: '_id', required: false)
+  String? id;
   bool? admin;
   @JsonKey(name: 'peso', required: false)
   double? weight;
@@ -56,4 +57,27 @@ class User extends ChangeNotifier {
 
     notifyListeners();
   }
+
+
+  User copy({
+    double? weight,
+    double? leanMass,
+    double? bodyFat,
+    double? hydro,
+    int? bmr,
+  }) =>
+      User(
+        id: this.id,
+        password: this.password,
+        username: this.username,
+        name: this.name,
+        surname: this.surname,
+        birthday: this.birthday,
+        admin: this.admin,
+        weight: weight ?? this.weight,
+        leanMass: leanMass ?? this.leanMass,
+        bodyFat: bodyFat ?? this.bodyFat,
+        bmr: bmr ?? this.bmr,
+        hydro: hydro ?? this.hydro,
+      );
 }

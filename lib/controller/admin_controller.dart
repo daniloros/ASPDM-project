@@ -17,6 +17,9 @@ class AdminController  extends ChangeNotifier{
 
   bool get isLoading => _isLoading;
 
+  User? _userDetails;
+
+  User? get userDetails => _userDetails;
 
   Future loadUserList() async {
     debugPrint("IsLoadingUser${_isLoading.toString()}");
@@ -35,6 +38,25 @@ class AdminController  extends ChangeNotifier{
 
     notifyListeners();
   }
+
+  Future loadUserDetails(String? username) async {
+    debugPrint("IsLoadingUser${_isLoading.toString()}");
+    if (_isLoading) return;
+
+    _isLoading = true;
+    notifyListeners();
+
+    try {
+      final details = await AdminProvider.loadUserDetails(username);
+      _userDetails = details;
+
+    } finally {
+      _isLoading = false;
+    }
+
+    notifyListeners();
+  }
+
 
 
 }
