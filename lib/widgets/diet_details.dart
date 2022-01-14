@@ -38,7 +38,7 @@ class DietDetails extends StatelessWidget {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(top: 50, left: 20),
-                                child: Text(dietDetails.carbo,
+                                child: Text(dietDetails.carbo!,
                                     style: TextStyle(
                                         color: Colors.grey[800],
                                         fontWeight: FontWeight.w900,
@@ -53,7 +53,7 @@ class DietDetails extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Text("${dietDetails.carboGr.toString()} gr",
+                                Text("${dietDetails.carboGr!.toString()} gr",
                                     style: TextStyle(
                                         color: Colors.grey[800],
                                         fontWeight: FontWeight.w900,
@@ -79,7 +79,7 @@ class DietDetails extends StatelessWidget {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(top: 50, left: 20),
-                                child: Text(dietDetails.protein,
+                                child: Text(dietDetails.protein!,
                                     style: TextStyle(
                                         color: Colors.grey[800],
                                         fontWeight: FontWeight.w900,
@@ -119,7 +119,7 @@ class DietDetails extends StatelessWidget {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(top: 50, left: 20),
-                                child: Text(dietDetails.vegetable,
+                                child: Text(dietDetails.vegetable!,
                                     style: TextStyle(
                                         color: Colors.grey[800],
                                         fontWeight: FontWeight.w900,
@@ -160,7 +160,7 @@ class DietDetails extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(dietDetails.lipids,
+                                Text(dietDetails.lipids!,
                                     style: TextStyle(
                                         color: Colors.grey[800],
                                         fontWeight: FontWeight.w900,

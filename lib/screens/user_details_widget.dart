@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:healty/controller/admin_controller.dart';
 import 'package:healty/model/user.dart';
+import 'package:healty/screens/page_diet.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/src/provider.dart';
 
-import 'text_dialog_widget.dart';
+import '../widgets/change_info_user_widget.dart';
 
 class UserDetailsWidget extends StatefulWidget {
   final User? user;
@@ -134,9 +135,14 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                     child: ElevatedButton(
                                         onPressed: () async {
                                           //TODO: delete Account
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) => DietPage()
+                                            )
+                                          );
 
                                         },
-                                        child: Text("ELIMINA ACCOUNT")),
+                                        child: Text("Visualizza Dieta")),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(
@@ -146,7 +152,7 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                           Navigator.of(context).push(
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      TextDialogWidget(
+                                                      ChangeInfoUser(
                                                         user: userDetails,
                                                       ))).then((userDetails) => _fetchNotes());
                                         },

@@ -35,8 +35,8 @@ class DietItemDisplayer extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    Text(item.userId),
-                    Text(item.protein),
+                    Text(item.userId!),
+                    Text(item.protein!),
                   ]
 
               ),

@@ -29,7 +29,7 @@ class DietDinnerWidget extends StatelessWidget {
                       var item = context
                           .read<DietPageController>()
                           .currentDinnerDiet;
-                      if (item == null) {
+                      if (item!.id == null) {
                         return const Text("Non ci sono diete caricate");
                       } else {
                         return GestureDetector(
@@ -53,7 +53,7 @@ class DietDinnerWidget extends StatelessWidget {
                                 Theme.of(context).textTheme.headline5,
                               ),
                               Text(
-                                item.userId,
+                                item.userId!,
                                 style:
                                 Theme.of(context).textTheme.bodyText2,
                               ),

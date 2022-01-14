@@ -6,36 +6,38 @@ part 'diet.g.dart';
 @JsonSerializable()
 class Diet extends Equatable {
   @JsonKey(name: '_id', required: false)
-  String id;
-  String userId;
-  String carbo;
-  int carboGr;
-  String protein;
+  String? id;
+  int? carboGr;
+  int? lipidsGr;
+  int? vegetableGr;
+  String? lipids;
   int? proteinGr;
-  String lipids;
-  int lipidsGr;
-  String vegetable;
-  int vegetableGr;
-  bool isCurrent;
+  bool? isCurrent;
+  String? protein;
+  String? vegetable;
+  String? carbo;
+  String? userId;
 
-  Diet(
+
+  Diet({
       this.id,
-      this.userId,
-      this.carbo,
       this.carboGr,
-      this.protein,
-      this.proteinGr,
-      this.lipids,
       this.lipidsGr,
-      this.vegetable,
       this.vegetableGr,
-      this.isCurrent
-      );
+      this.lipids,
+      this.proteinGr,
+      this.isCurrent,
+      this.protein,
+      this.vegetable,
+      this.carbo,
+      this.userId});
 
   @override
   List<Object?> get props => [id];
 
   factory Diet.fromJson(Map<String, dynamic> json) => _$DietFromJson(json);
   Map<String, dynamic> toJson() => _$DietToJson(this);
+
+
 
 }

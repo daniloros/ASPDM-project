@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:healty/model/diet.dart';
 import 'package:healty/model/user.dart';
 
 import 'package:http/http.dart' as http;
@@ -72,9 +73,65 @@ class AdminProvider {
 
     debugPrint(jsonTest);
 
-    debugPrint("GET result ${response.statusCode}");
+    debugPrint("PUT result ${response.statusCode}");
 
     if (response.statusCode == 200) {
+      return true;
+    } else {
+      debugPrint(response.statusCode.toString());
+      throw Exception("Errore di comunicazione");
+    }
+  }
+
+  static Future<bool> archiveLunchDiet(String userId) async {
+    debugPrint("update lunch diet for archive");
+
+    debugPrint(userId);
+
+
+
+    final response = await http.patch(
+        Uri.parse('https://dietflutterapp-685c.restdb.io/rest/dietlunch/$userId'),
+        headers: {
+          'Content-Type': 'application/json',
+          "x-apikey": "6c2d6f4ac1a8d9943d70ee4a2ac0be41d7041",
+        },
+        body: jsonEncode(<String, dynamic>{
+          'isCurrent' : false
+        })
+    );
+
+    debugPrint("PATCH result ${response.statusCode}");
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      debugPrint(response.statusCode.toString());
+      throw Exception("Errore di comunicazione");
+    }
+  }
+
+
+  static Future<bool> addNewLunchDiet(Diet newDiet) async {
+    debugPrint("Loading lunch diet list");
+
+    final response = await http.post(
+        Uri.parse(
+            'https://dietflutterapp-685c.restdb.io/rest/dietlunch'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          "x-apikey": "6c2d6f4ac1a8d9943d70ee4a2ac0be41d7041",
+        },
+        body: json.encode(newDiet.toJson())
+    );
+
+    var jsonTest = json.encode(newDiet.toJson());
+
+    debugPrint(jsonTest);
+
+    debugPrint("POST result ${response.statusCode}");
+
+    if (response.statusCode == 201) {
       return true;
     } else {
       debugPrint(response.statusCode.toString());

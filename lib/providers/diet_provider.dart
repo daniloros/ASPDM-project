@@ -79,7 +79,8 @@ class DietProvider {
       debugPrint("jsonResponse ${jsonResponse.length}");
       if(jsonResponse.isEmpty){
         debugPrint("jsonResponse is empty");
-        return Diet("", "", "", 0, "", 0, "", 0, "", 0, false);
+        return Diet(id: "", carbo: "", carboGr: 0, isCurrent: false, lipids: "", lipidsGr: 0, protein: "", proteinGr: 0, userId: "", vegetable: "", vegetableGr: 0);
+        //return Diet("", "", "", 0, "", 0, "", 0, "", 0, false);
       } else {
         return Diet.fromJson(jsonDecode(response.body)[0]);
       }
@@ -104,7 +105,8 @@ class DietProvider {
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body);
       if(jsonResponse.isEmpty){
-        return Diet("", "", "", 0, "", 0, "", 0, "", 0, false);
+        return Diet(id: "", carbo: "", carboGr: 0, isCurrent: false, lipids: "", lipidsGr: 0, protein: "", proteinGr: 0, userId: "", vegetable: "", vegetableGr: 0);
+        // return Diet("", "", "", 0, "", 0, "", 0, "", 0, false);
       } else {
         return Diet.fromJson(jsonDecode(response.body)[0]);
       }

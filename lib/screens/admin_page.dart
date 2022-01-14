@@ -3,7 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:healty/controller/admin_controller.dart';
 import 'package:healty/controller/diet_page_controller.dart';
 import 'package:healty/model/user.dart';
-import 'package:healty/widgets/user_details_widget.dart';
+import 'package:healty/screens/user_details_widget.dart';
 import 'package:healty/widgets/user_list_displayer.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/src/provider.dart';

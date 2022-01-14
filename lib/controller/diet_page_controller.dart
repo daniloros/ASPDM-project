@@ -43,8 +43,15 @@ class DietPageController extends ChangeNotifier {
       _dietLunchList = list;
 
       final current = await DietProvider.loadCurrentLunchDiet(username);
+
+      debugPrint("currentID");
+      debugPrint(current.id);
+
       if (current.id != "") {
         _currentLunchDiet = current;
+
+      } else {
+        _currentLunchDiet = null;
       }
     } finally {
       _isLoading = false;
@@ -66,7 +73,10 @@ class DietPageController extends ChangeNotifier {
       final current = await DietProvider.loadCurrentDinnerDiet(username);
       if (current.id != "") {
         _currentDinnerDiet = current;
+      } else {
+        _currentDinnerDiet = null;
       }
+
     } finally {
       _isLoading = false;
     }

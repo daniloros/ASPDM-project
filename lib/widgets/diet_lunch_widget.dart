@@ -29,7 +29,10 @@ class DietLunchWidget extends StatelessWidget {
                       var item = context
                           .read<DietPageController>()
                           .currentLunchDiet;
-                        if (item == null) {
+                      debugPrint("item item item");
+                      debugPrint(item.toString());
+
+                      if (item!.id == null) {
                           return const Text("Non ci sono diete caricate");
                         } else {
                             return GestureDetector(
@@ -53,7 +56,7 @@ class DietLunchWidget extends StatelessWidget {
                                         Theme.of(context).textTheme.headline5,
                                   ),
                                   Text(
-                                    item.userId,
+                                    item.userId!,
                                     style:
                                         Theme.of(context).textTheme.bodyText2,
                                   ),

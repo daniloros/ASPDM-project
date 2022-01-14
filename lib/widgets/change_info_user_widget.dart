@@ -3,19 +3,19 @@ import 'package:healty/model/user.dart';
 import 'package:healty/providers/admin_provider.dart';
 import 'package:provider/src/provider.dart';
 
-class TextDialogWidget extends StatefulWidget {
+class ChangeInfoUser extends StatefulWidget {
   User user;
 
-  TextDialogWidget({
+  ChangeInfoUser({
     Key? key,
     required this.user,
   }) : super(key: key);
 
   @override
-  _TextDialogWidgetState createState() => _TextDialogWidgetState();
+  _ChangeInfoUserState createState() => _ChangeInfoUserState();
 }
 
-class _TextDialogWidgetState extends State<TextDialogWidget> {
+class _ChangeInfoUserState extends State<ChangeInfoUser> {
 
   late TextEditingController controllerWeight, controllerLean ,controllerFat, controllerHydro, controllerBMR;
 
