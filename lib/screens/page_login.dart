@@ -81,29 +81,27 @@ class _LoginPageState extends State<LoginPage> {
                     TextFormField(
                       controller: _ctrlUsername,
                       decoration: const InputDecoration(
-                        icon: Icon(Icons.person),
-                        hintText: "Username",
-                      ),
-                      validator: (val){
-                        if(val!.isEmpty ){
+                          icon: Icon(Icons.person),
+                          labelText: "Username",
+                          errorBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red, width: 5))),
+                      validator: (val) {
+                        if (val!.isEmpty) {
                           return "This field is required";
                         }
-                    },
+                      },
                     ),
                     const SizedBox(
                       height: 32,
                     ),
                     Container(
-                      // decoration: BoxDecoration(
-                      //   color: Colors.yellow,
-                      //   borderRadius: BorderRadius.circular(14.0),
-                      // ),
                       child: TextFormField(
                         controller: _ctrlPassword,
                         obscureText: !passwordVisible,
                         decoration: InputDecoration(
                             icon: const Icon(Icons.lock),
-                            hintText: "Password",
+                            labelText: "Password",
                             suffixIcon: IconButton(
                               color: Colors.grey,
                               splashRadius: 1,
@@ -111,7 +109,15 @@ class _LoginPageState extends State<LoginPage> {
                                   ? Icons.visibility_outlined
                                   : Icons.visibility_off_outlined),
                               onPressed: togglePassword,
-                            )),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red, width: 5))),
+                        validator: (val) {
+                          if (val!.isEmpty) {
+                            return "This field is required";
+                          }
+                        },
                       ),
                     ),
                   ],
@@ -129,10 +135,9 @@ class _LoginPageState extends State<LoginPage> {
                     final username = _ctrlUsername.text;
                     final password = _ctrlPassword.text;
 
-                    if (_formUserKey.currentState!.validate()){
+                    if (_formUserKey.currentState!.validate()) {
                       validateLogin(username, password);
                     }
-
                   },
                   child: const Text("Login"),
                   style: ElevatedButton.styleFrom(
@@ -154,8 +159,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> validateLogin(String username, String password) async {
-
-    if(username.isEmpty){
+    if (username.isEmpty) {
       const snackBar = SnackBar(content: Text("insert a valid username"));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
@@ -164,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
 
     debugPrint(response.toString());
 
-    switch(response) {
+    switch (response) {
       case 0:
         {
           await context.read<User>().login(username, password);
@@ -191,8 +195,6 @@ class _LoginPageState extends State<LoginPage> {
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
         break;
-
     }
-
   }
 }

@@ -15,6 +15,7 @@ class AddNewLunchDiet extends StatefulWidget {
 }
 
 class _AddNewLunchDietState extends State<AddNewLunchDiet> {
+  final _formKey = GlobalKey<FormState>();
 
   late TextEditingController controllerProteinType,
       controllerCarboType,
@@ -63,30 +64,37 @@ class _AddNewLunchDietState extends State<AddNewLunchDiet> {
       ),
       body: Center(
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: TextFormField(
-                        controller: controllerCarboType,
-                        decoration: const InputDecoration(
-                            labelText: "Carbo type",
-                            border: OutlineInputBorder(),
-                            errorBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.red, width: 5))),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: TextFormField(
+                          controller: controllerCarboType,
+                          decoration: const InputDecoration(
+                              labelText: "Carbo type",
+                              border: OutlineInputBorder(),
+                              errorBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.red, width: 5))),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "this field is required";
+                            }
+                          },
+                        ),
                       ),
                     ),
-                  ),
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: TextFormField(
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: TextFormField(
                           controller: controllerCarboGr,
                           keyboardType: TextInputType.number,
                           inputFormatters: <TextInputFormatter>[
@@ -96,32 +104,44 @@ class _AddNewLunchDietState extends State<AddNewLunchDiet> {
                               labelText: "Carbo gr",
                               border: OutlineInputBorder(),
                               errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.red, width: 5)))),
+                                  borderSide:
+                                      BorderSide(color: Colors.red, width: 5))),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "this field is required";
+                            }
+                          },
+                        ),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: TextFormField(
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: TextFormField(
                           controller: controllerProteinType,
                           decoration: const InputDecoration(
                               labelText: "Protein type",
                               border: OutlineInputBorder(),
                               errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.red, width: 5)))),
+                                  borderSide:
+                                      BorderSide(color: Colors.red, width: 5))),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "this field is required";
+                            }
+                          },
+                        ),
+                      ),
                     ),
-                  ),
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: TextFormField(
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: TextFormField(
                           controller: controllerProteinGr,
                           keyboardType: TextInputType.number,
                           inputFormatters: <TextInputFormatter>[
@@ -131,32 +151,44 @@ class _AddNewLunchDietState extends State<AddNewLunchDiet> {
                               labelText: "Protein gr",
                               border: OutlineInputBorder(),
                               errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.red, width: 5)))),
+                                  borderSide:
+                                      BorderSide(color: Colors.red, width: 5))),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "this field is required";
+                            }
+                          },
+                        ),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: TextFormField(
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: TextFormField(
                           controller: controllerVegetableType,
                           decoration: const InputDecoration(
                               labelText: "Vegetable type",
                               border: OutlineInputBorder(),
                               errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.red, width: 5)))),
+                                  borderSide:
+                                      BorderSide(color: Colors.red, width: 5))),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "this field is required";
+                            }
+                          },
+                        ),
+                      ),
                     ),
-                  ),
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: TextFormField(
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: TextFormField(
                           controller: controllerVegetablGr,
                           keyboardType: TextInputType.number,
                           inputFormatters: <TextInputFormatter>[
@@ -166,32 +198,44 @@ class _AddNewLunchDietState extends State<AddNewLunchDiet> {
                               labelText: "Vegetable Gr",
                               border: OutlineInputBorder(),
                               errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.red, width: 5)))),
+                                  borderSide:
+                                      BorderSide(color: Colors.red, width: 5))),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "this field is required";
+                            }
+                          },
+                        ),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: TextFormField(
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: TextFormField(
                           controller: controllerFatType,
                           decoration: const InputDecoration(
                               labelText: "Lipids type",
                               border: OutlineInputBorder(),
                               errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.red, width: 5)))),
+                                  borderSide:
+                                      BorderSide(color: Colors.red, width: 5))),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "this field is required";
+                            }
+                          },
+                        ),
+                      ),
                     ),
-                  ),
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: TextFormField(
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: TextFormField(
                           controller: controllerFatGr,
                           keyboardType: TextInputType.number,
                           inputFormatters: <TextInputFormatter>[
@@ -201,73 +245,89 @@ class _AddNewLunchDietState extends State<AddNewLunchDiet> {
                               labelText: "Lipds Gr",
                               border: OutlineInputBorder(),
                               errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.red, width: 5)))),
+                                  borderSide:
+                                      BorderSide(color: Colors.red, width: 5))),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "this field is required";
+                            }
+                          },
+                        ),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              ElevatedButton(
-                child: Text('Done'),
-                onPressed: () async {
+                  ],
+                ),
+                ElevatedButton(
+                  child: Text('Done'),
+                  onPressed: () async {
+                    debugPrint("Press");
 
-                  debugPrint("Press");
+                    int? carboGr = int.tryParse(controllerCarboGr.text);
+                    int? proteinGr = int.tryParse(controllerProteinGr.text);
+                    int? lipidsGr = int.tryParse(controllerFatGr.text);
+                    int? vegetableGr = int.tryParse(controllerVegetablGr.text);
 
-                  int? carboGr = int.tryParse(controllerCarboGr.text);
-                  int? proteinGr = int.tryParse(controllerProteinGr.text);
-                  int? lipidsGr = int.tryParse(controllerFatGr.text);
-                  int? vegetableGr = int.tryParse(controllerVegetablGr.text);
+                    currentDiet =
+                        context.read<DietPageController>().currentLunchDiet;
+                    debugPrint(currentDiet.toString());
 
-                  currentDiet =
-                      context.read<DietPageController>().currentLunchDiet;
-                  debugPrint(currentDiet.toString());
-                  // debugPrint(context.read<DietPageController>().currentLunchDiet!.id.toString());
+                    if (_formKey.currentState!.validate()) {
+                      if (currentDiet != null) {
+                        debugPrint("Archiviamo la dieta");
+                        var userId = currentDiet!.userId;
+                        response = await AdminProvider.archiveLunchDiet(
+                            currentDiet!.id!);
 
-                  if (currentDiet != null) {
-                    debugPrint("Archiviamo la dieta");
-                    var userId = currentDiet!.userId;
-                    response =
-                        await AdminProvider.archiveLunchDiet(currentDiet!.id!);
+                        if (response) {
+                          var newDiet = Diet(
+                              vegetableGr: vegetableGr,
+                              vegetable: controllerVegetableType.text,
+                              userId: userId,
+                              proteinGr: proteinGr,
+                              protein: controllerProteinType.text,
+                              lipidsGr: lipidsGr,
+                              lipids: controllerFatType.text,
+                              isCurrent: true,
+                              carboGr: carboGr,
+                              carbo: controllerCarboType.text);
+                          response =
+                              await AdminProvider.addNewLunchDiet(newDiet);
+                          debugPrint(response.toString());
+                        }
+                      } else {
+                        debugPrint("Else situation");
+                        var userId = context
+                            .read<AdminController>()
+                            .userDetails!
+                            .username;
+                        var newDiet = Diet(
+                            vegetableGr: vegetableGr,
+                            vegetable: controllerVegetableType.text,
+                            userId: userId,
+                            proteinGr: proteinGr,
+                            protein: controllerProteinType.text,
+                            lipidsGr: lipidsGr,
+                            lipids: controllerFatType.text,
+                            isCurrent: true,
+                            carboGr: carboGr,
+                            carbo: controllerCarboType.text);
 
-                    if (response) {
-                      var newDiet = Diet(
-                          vegetableGr: vegetableGr,
-                          vegetable: controllerVegetableType.text,
-                          userId: userId,
-                          proteinGr: proteinGr,
-                          protein: controllerProteinType.text,
-                          lipidsGr: lipidsGr,
-                          lipids: controllerFatType.text,
-                          isCurrent: true,
-                          carboGr: carboGr,
-                          carbo: controllerCarboType.text);
-                      response = await AdminProvider.addNewLunchDiet(newDiet);
-                      debugPrint(response.toString());
+                        response = await AdminProvider.addNewLunchDiet(newDiet);
+                        debugPrint(response.toString());
+                      }
+
+                      debugPrint(context
+                          .read<DietPageController>()
+                          .currentLunchDiet!
+                          .id
+                          .toString());
+
+                      Navigator.of(context).pop();
                     }
-                  } else {
-                    debugPrint("Else situation");
-                    var userId =
-                        context.read<AdminController>().userDetails!.username;
-                    var newDiet = Diet(
-                        vegetableGr: vegetableGr,
-                        vegetable: controllerVegetableType.text,
-                        userId: userId,
-                        proteinGr: proteinGr,
-                        protein: controllerProteinType.text,
-                        lipidsGr: lipidsGr,
-                        lipids: controllerFatType.text,
-                        isCurrent: true,
-                        carboGr: carboGr,
-                        carbo: controllerCarboType.text);
-
-                    response = await AdminProvider.addNewLunchDiet(newDiet);
-                    debugPrint(response.toString());
-                  }
-
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
