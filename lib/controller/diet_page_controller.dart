@@ -40,13 +40,16 @@ class DietPageController extends ChangeNotifier {
 
     try {
       final list = await DietProvider.loadLunchDiet(username!);
+
       _dietLunchList = list;
 
       final current = await DietProvider.loadCurrentLunchDiet(username);
 
-      debugPrint("currentID");
-      debugPrint(current.id);
+      debugPrint("currentToString");
+      debugPrint(current.toString());
 
+
+      
       if (current.id != "") {
         _currentLunchDiet = current;
 

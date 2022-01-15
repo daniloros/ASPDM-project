@@ -3,6 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:healty/controller/admin_controller.dart';
 import 'package:healty/controller/diet_page_controller.dart';
 import 'package:healty/model/user.dart';
+import 'package:healty/providers/admin_provider.dart';
 import 'package:healty/screens/user_details_widget.dart';
 import 'package:healty/widgets/user_list_displayer.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,6 @@ class AdminPage extends StatefulWidget {
 }
 
 class _AdminPageState extends State<AdminPage> {
-
   void initState() {
     super.initState();
 
@@ -24,7 +24,7 @@ class _AdminPageState extends State<AdminPage> {
   }
 
   @override
-  void dispose(){
+  void dispose() {
     super.dispose();
   }
 
@@ -64,14 +64,65 @@ class _AdminPageState extends State<AdminPage> {
                                   final item = context
                                       .read<AdminController>()
                                       .userList[index];
-                                  //return Text(item.username!);
-
                                   return GestureDetector(
                                       onTap: () {
-                                        Navigator.of(context).push(MaterialPageRoute(
-                                            builder: (context) => UserDetailsWidget(user: item,)));
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    UserDetailsWidget(
+                                                      user: item,
+                                                    )));
                                       },
-                                      child: UserListWidget(item));
+                                      child: Dismissible(
+                                          key: Key(item.id!),
+                                          direction:
+                                              DismissDirection.startToEnd,
+                                          onDismissed: (direction) {},
+                                          background: Container(
+                                              padding:
+                                                  EdgeInsets.only(left: 16),
+                                              child: Align(
+                                                child: Icon(Icons.delete,
+                                                    color: Colors.white),
+                                                alignment: Alignment.centerLeft,
+                                              ),
+                                              color: Colors.red),
+                                          confirmDismiss: (direction) async {
+                                            final result = await showDialog(
+                                              context: context,
+                                              builder: (_) => NoteDelete(),
+                                            );
+                                            if (result) {
+                                              final deleteUser =
+                                                  await AdminProvider
+                                                      .deleteUser(item.id!);
+                                              var message;
+                                              if (deleteUser == true) {
+                                                message =
+                                                    "User was deleted successfully";
+                                              } else {
+                                                message = "An errore occured";
+                                              }
+
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => AlertDialog(
+                                                        title: Text("Done"),
+                                                        content: Text(message),
+                                                        actions: [
+                                                          ElevatedButton(
+                                                              onPressed: () {
+                                                                Navigator.of(
+                                                                        context)
+                                                                    .pop();
+                                                              },
+                                                              child: Text("OK"))
+                                                        ],
+                                                      ));
+                                            }
+                                            return result;
+                                          },
+                                          child: UserListWidget(item)));
                                 });
                           },
                         ),
@@ -94,5 +145,29 @@ class _AdminPageState extends State<AdminPage> {
             // )
           ],
         ));
+  }
+}
+
+class NoteDelete extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text('Warning'),
+      content: Text('Are you sure you want to delete this note?'),
+      actions: <Widget>[
+        ElevatedButton(
+          child: Text('Yes'),
+          onPressed: () {
+            Navigator.of(context).pop(true);
+          },
+        ),
+        ElevatedButton(
+          child: Text('No'),
+          onPressed: () {
+            Navigator.of(context).pop(false);
+          },
+        ),
+      ],
+    );
   }
 }

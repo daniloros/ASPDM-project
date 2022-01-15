@@ -3,7 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:healty/controller/admin_controller.dart';
 import 'package:healty/controller/diet_page_controller.dart';
 import 'package:healty/model/user.dart';
-import 'package:healty/widgets/add_new_diet.dart';
+import 'package:healty/widgets/add_new_lunch_diet.dart';
 import 'package:healty/widgets/diet_lunch_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -62,7 +62,7 @@ class _LunchDietPage extends State<LunchDietPage> {
                 //await context.read<ToDoList>().add("Nuova cosa da fare");
 
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => AddNewDiet())).then((userDetails) => _fetchDiet());
+                    MaterialPageRoute(builder: (context) => AddNewLunchDiet())).then((userDetails) => _fetchDiet());
               },
             );
           } else

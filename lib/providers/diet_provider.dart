@@ -18,7 +18,7 @@ class DietProvider {
     debugPrint("Loading lunch diet list");
 
     final response = await http.get(
-        Uri.parse('https://dietflutterapp-685c.restdb.io/rest/dietLunch?q={"isCurrent":false, "userId": "$username"}'),
+        Uri.parse('https://dietflutterapp-685c.restdb.io/rest/dietlunch?q={"isCurrent":false, "userId": "$username"}'),
         headers: {
           "Content-Type": "application/json",
           "x-apikey": "6c2d6f4ac1a8d9943d70ee4a2ac0be41d7041",
@@ -66,7 +66,7 @@ class DietProvider {
     debugPrint("Loading current lunch diet");
 
     final response = await http.get(
-        Uri.parse('https://dietflutterapp-685c.restdb.io/rest/dietLunch?q={"isCurrent":true, "userId": "$username"}'),
+        Uri.parse('https://dietflutterapp-685c.restdb.io/rest/dietlunch?q={"isCurrent":true, "userId": "$username"}'),
         headers: {
           "Content-Type": "application/json",
           "x-apikey": "6c2d6f4ac1a8d9943d70ee4a2ac0be41d7041",

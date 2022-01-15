@@ -139,4 +139,80 @@ class AdminProvider {
     }
   }
 
+  static Future<bool> archiveDinnerDiet(String userId) async {
+    debugPrint("update lunch diet for archive");
+
+    debugPrint(userId);
+
+
+
+    final response = await http.patch(
+        Uri.parse('https://dietflutterapp-685c.restdb.io/rest/dietdinner/$userId'),
+        headers: {
+          'Content-Type': 'application/json',
+          "x-apikey": "6c2d6f4ac1a8d9943d70ee4a2ac0be41d7041",
+        },
+        body: jsonEncode(<String, dynamic>{
+          'isCurrent' : false
+        })
+    );
+
+    debugPrint("PATCH result ${response.statusCode}");
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      debugPrint(response.statusCode.toString());
+      throw Exception("Errore di comunicazione");
+    }
+  }
+
+
+  static Future<bool> addNewDinnerDiet(Diet newDiet) async {
+    debugPrint("Loading lunch diet list");
+
+    final response = await http.post(
+        Uri.parse(
+            'https://dietflutterapp-685c.restdb.io/rest/dietdinner'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          "x-apikey": "6c2d6f4ac1a8d9943d70ee4a2ac0be41d7041",
+        },
+        body: json.encode(newDiet.toJson())
+    );
+
+    var jsonTest = json.encode(newDiet.toJson());
+
+    debugPrint(jsonTest);
+
+    debugPrint("POST result ${response.statusCode}");
+
+    if (response.statusCode == 201) {
+      return true;
+    } else {
+      debugPrint(response.statusCode.toString());
+      throw Exception("Errore di comunicazione");
+    }
+  }
+
+  static Future<bool> deleteUser(String idUsername) async {
+    debugPrint("Loading lunch diet list");
+
+    final response = await http.delete(
+        Uri.parse(
+            'https://dietflutterapp-685c.restdb.io/rest/utenti/$idUsername'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          "x-apikey": "6c2d6f4ac1a8d9943d70ee4a2ac0be41d7041",
+        },
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      debugPrint(response.statusCode.toString());
+      throw Exception("Errore di comunicazione");
+    }
+  }
+
 }
