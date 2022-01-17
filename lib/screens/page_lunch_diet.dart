@@ -56,11 +56,9 @@ class _LunchDietPage extends State<LunchDietPage> {
           debugPrint(context.read<User>().username);
           if (context.read<User>().username == "Admin") {
             return FloatingActionButton(
-              child: const Icon(Icons.plus_one),
+              child: const Icon(Icons.add),
               onPressed: () async {
                 debugPrint("Hai Cliccato il floating button");
-                //await context.read<ToDoList>().add("Nuova cosa da fare");
-
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => AddNewLunchDiet())).then((userDetails) => _fetchDiet());
               },

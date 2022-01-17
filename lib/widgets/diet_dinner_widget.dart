@@ -12,12 +12,17 @@ class DietDinnerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final height = MediaQuery.of(context).size.height;
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
 
     return Selector<DietPageController, Diet?>(
         selector: (context, model) => model.currentDinnerDiet,
         builder: (context, value, _) {
           if (value == null) {
             return const SizedBox();
+          } else if (isLandscape) {
+            return DietDetails(
+                context.read<DietPageController>().currentDinnerDiet!);
           } else {
             return Padding(
               padding: const EdgeInsets.all(20),
