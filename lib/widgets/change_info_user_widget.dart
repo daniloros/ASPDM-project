@@ -44,7 +44,7 @@ class _ChangeInfoUserState extends State<ChangeInfoUser> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Diet Details"),
+        title: const Text("Dettagli dieta"),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -62,14 +62,14 @@ class _ChangeInfoUserState extends State<ChangeInfoUser> {
                       FilteringTextInputFormatter.digitsOnly
                     ],
                     decoration: const InputDecoration(
-                        labelText: "Kg Weight",
+                        labelText: "Peso in KG",
                         border: OutlineInputBorder(),
                         errorBorder: OutlineInputBorder(
                             borderSide:
                                 BorderSide(color: Colors.red, width: 5))),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "this field is required";
+                        return "Questo campo è obbligatorio";
                       }
                     },
                   ),
@@ -84,14 +84,14 @@ class _ChangeInfoUserState extends State<ChangeInfoUser> {
                       FilteringTextInputFormatter.digitsOnly
                     ],
                     decoration: const InputDecoration(
-                        labelText: "Kg Mass Lean",
+                        labelText: "KG di Massa Magra",
                         border: OutlineInputBorder(),
                         errorBorder: OutlineInputBorder(
                             borderSide:
                                 BorderSide(color: Colors.red, width: 5))),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "this field is required";
+                        return "Questo campo è obbligatorio";
                       }
                     },
                   ),
@@ -106,14 +106,14 @@ class _ChangeInfoUserState extends State<ChangeInfoUser> {
                       FilteringTextInputFormatter.digitsOnly
                     ],
                     decoration: const InputDecoration(
-                        labelText: "% Body Fat",
+                        labelText: "% Massa Grassa",
                         border: OutlineInputBorder(),
                         errorBorder: OutlineInputBorder(
                             borderSide:
                             BorderSide(color: Colors.red, width: 5))),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "this field is required";
+                        return "Questo campo è obbligatorio";
                       }
                     },
                   ),
@@ -128,14 +128,14 @@ class _ChangeInfoUserState extends State<ChangeInfoUser> {
                       FilteringTextInputFormatter.digitsOnly
                     ],
                     decoration: const InputDecoration(
-                        labelText: "& Hydration",
+                        labelText: "% Idratazione",
                         border: OutlineInputBorder(),
                         errorBorder: OutlineInputBorder(
                             borderSide:
                                 BorderSide(color: Colors.red, width: 5))),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "this field is required";
+                        return "Questo campo è obbligatorio";
                       }
                     },
                   ),
@@ -157,14 +157,14 @@ class _ChangeInfoUserState extends State<ChangeInfoUser> {
                                 BorderSide(color: Colors.red, width: 5))),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "this field is required";
+                        return "Questo campo è obbligatorio";
                       }
                     },
                   ),
                 ),
                 SizedBox(height: 20,),
                 ElevatedButton(
-                  child: const Text('Done'),
+                  child: const Text('Conferma'),
                   onPressed: () async {
                     double? weight = double.tryParse(controllerWeight.text);
                     weight ??= widget.user.weight;

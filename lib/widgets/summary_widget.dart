@@ -63,7 +63,7 @@ class SummaryWidget extends StatelessWidget {
                                     children: [
                                       ListTile(
                                         title: isLandscape ? null : Text(
-                                          "Hello, ${item.username}",
+                                          "Ciao, ${item.username}",
                                           style: const TextStyle(
                                               fontWeight: FontWeight.w400, fontSize: 18),
                                         ),
@@ -89,7 +89,7 @@ class SummaryWidget extends StatelessWidget {
                                               Row(
                                                 children: [
                                                   _DietProgress(
-                                                    ingredient: "Lean Mass",
+                                                    ingredient: "Massa Magra",
                                                     progress: item.leanMass! / 100,
                                                     progressColor: Colors.green,
                                                     leftAmount: item.leanMass!.toInt(),
@@ -108,7 +108,7 @@ class SummaryWidget extends StatelessWidget {
                                               Row(
                                                 children: [
                                                   _DietProgress(
-                                                    ingredient: "Body Fat",
+                                                    ingredient: "Massa Grassa",
                                                     progress: item.bodyFat! / 100,
                                                     progressColor: Colors.red,
                                                     leftAmount: item.bodyFat!.toInt(),

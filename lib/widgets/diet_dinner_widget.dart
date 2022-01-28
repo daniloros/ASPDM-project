@@ -42,27 +42,43 @@ class DietDinnerWidget extends StatelessWidget {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => DietDetails(item)));
                           },
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Center(
-                                child: Image.asset(
-                                  "assets/images/diet-dinner-photo.jpg",
-                                  fit: BoxFit.contain,
-                                ),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey,
+                                  blurRadius: 2.0,
+                                  offset: Offset(2.0, 2.0), // shadow direction: bottom right
+                                )
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Center(
+                                    child: Image.asset(
+                                      "assets/images/diet-dinner-photo.jpg",
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                  Text(
+                                    item.id.toString(),
+                                    style:
+                                    Theme.of(context).textTheme.headline5,
+                                  ),
+                                  Text(
+                                    item.userId!,
+                                    style:
+                                    Theme.of(context).textTheme.bodyText2,
+                                  ),
+                                ],
                               ),
-                              Text(
-                                item.id.toString(),
-                                style:
-                                Theme.of(context).textTheme.headline5,
-                              ),
-                              Text(
-                                item.userId!,
-                                style:
-                                Theme.of(context).textTheme.bodyText2,
-                              ),
-                            ],
+                            ),
                           ),
                         );
                       }

@@ -88,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                                   BorderSide(color: Colors.red, width: 5))),
                       validator: (val) {
                         if (val!.isEmpty) {
-                          return "This field is required";
+                          return "Questo campo è obbligatorio";
                         }
                       },
                     ),
@@ -115,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                                     BorderSide(color: Colors.red, width: 5))),
                         validator: (val) {
                           if (val!.isEmpty) {
-                            return "This field is required";
+                            return "Questo campo è obbligatorio";
                           }
                         },
                       ),
@@ -160,7 +160,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> validateLogin(String username, String password) async {
     if (username.isEmpty) {
-      const snackBar = SnackBar(content: Text("insert a valid username"));
+      const snackBar = SnackBar(content: Text("Inserisci un username valido"));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
 
@@ -177,14 +177,14 @@ class _LoginPageState extends State<LoginPage> {
 
       case 1:
         {
-          const snackBar = SnackBar(content: Text("user not found"));
+          const snackBar = SnackBar(content: Text("Utente non trovato"));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
         break;
 
       case 2:
         {
-          const snackBar = SnackBar(content: Text("password is not correct"));
+          const snackBar = SnackBar(content: Text("Password non corretta"));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
         break;

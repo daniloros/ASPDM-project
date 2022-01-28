@@ -22,9 +22,20 @@ class DietItemDisplayer extends StatelessWidget {
               child: Image.asset(
                 "assets/images/diet-dinner-photo.jpg",
                 width: 150,
-                fit: BoxFit.fitWidth,
+                //fit: BoxFit.fitWidth,
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Clicca per vedere"),
+                  Text("la tua vecchia dieta"),
+                ],
+              ),
+            ),
+
             // Padding(
             //   padding: const EdgeInsets.only(left: 8.0),
             //   child: Column(

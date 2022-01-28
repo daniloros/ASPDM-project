@@ -49,7 +49,6 @@ class DietPageController extends ChangeNotifier {
       debugPrint(current.toString());
 
 
-      
       if (current.id != "") {
         _currentLunchDiet = current;
 

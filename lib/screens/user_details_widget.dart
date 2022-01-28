@@ -42,6 +42,9 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
     // var newWeigth, newLeanMass, newBodyFat, newHydro, newBMR;
     // var resultUpdateUser;
 
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+
     return Selector<AdminController, User?>(
         selector: (context, model) => model.userDetails,
         builder: (context, value, _) {
@@ -56,11 +59,11 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                     var userDetails =
                         context.read<AdminController>().userDetails;
                     if (userDetails == null) {
-                      return Text("Ciao");
+                      return const Text("Dati non ancora presenti");
                     } else {
                       return Scaffold(
                         appBar: AppBar(
-                          title: Text("Diet ${userDetails.name} Details"),
+                          title: Text("Dettagli dieta di ${userDetails.name}"),
                         ),
                         body: Container(
                           margin: const EdgeInsets.all(8),
@@ -74,51 +77,51 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                 ),
                                 child: Expanded(
                                   child: DataTable(
-                                    columns: [
+                                    columns: const [
                                       DataColumn(label: Text('')),
                                       DataColumn(label: Text('')),
                                     ],
                                     rows: [
                                       DataRow(cells: [
-                                        DataCell(Text('Nome')),
+                                        const DataCell(Text('Nome')),
                                         DataCell(Text(userDetails.name!)),
                                       ]),
                                       DataRow(cells: [
-                                        DataCell(Text('Cognome')),
+                                        const DataCell(Text('Cognome')),
                                         DataCell(Text(userDetails.surname!)),
                                       ]),
                                       DataRow(cells: [
-                                        DataCell(Text('Data di Nascita')),
+                                        const DataCell(Text('Data di Nascita')),
                                         DataCell(Text(userDetails.birthday!)),
                                       ]),
                                       DataRow(cells: [
-                                        DataCell(Text('Peso')),
+                                        const DataCell(Text('Peso')),
                                         DataCell(
                                           Text(userDetails.weight.toString()),
                                         ),
                                       ]),
                                       DataRow(cells: [
-                                        DataCell(Text('massa magra')),
+                                        const DataCell(Text('massa magra')),
                                         DataCell(
                                           Text(userDetails.leanMass
                                               .toString()),
                                         ),
                                       ]),
                                       DataRow(cells: [
-                                        DataCell(Text('massa grassa')),
+                                        const DataCell(Text('massa grassa')),
                                         DataCell(
                                           Text(
                                               userDetails.bodyFat.toString()),
                                         ),
                                       ]),
                                       DataRow(cells: [
-                                        DataCell(Text('idratazione')),
+                                        const DataCell(Text('idratazione')),
                                         DataCell(
                                           Text(userDetails.hydro.toString()),
                                         ),
                                       ]),
                                       DataRow(cells: [
-                                        DataCell(Text('bmr')),
+                                        const DataCell(Text('bmr')),
                                         DataCell(
                                           Text(userDetails.bmr.toString()),
                                         ),
@@ -127,37 +130,29 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                   ),
                                 ),
                               ),
-                              Wrap(
+                              Row(
+                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 20, right: 10),
-                                    child: ElevatedButton(
-                                        onPressed: () async {
-                                          //TODO: delete Account
-                                          Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) => DietPage()
-                                            )
-                                          );
+                                  ElevatedButton(
+                                      onPressed: () async {
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) => DietPage()
+                                          )
+                                        );
 
-                                        },
-                                        child: Text("Visualizza Dieta")),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 20, left: 10),
-                                    child: ElevatedButton(
-                                        onPressed: () async {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ChangeInfoUser(
-                                                        user: userDetails,
-                                                      ))).then((userDetails) => _fetchNotes());
-                                        },
-                                        child: Text("MODIFICA DATI")),
-                                  ),
+                                      },
+                                      child: const Text("Modifica Dieta")),
+                                  ElevatedButton(
+                                      onPressed: () async {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ChangeInfoUser(
+                                                      user: userDetails,
+                                                    ))).then((userDetails) => _fetchNotes());
+                                      },
+                                      child: const Text("Modifica Dati")),
                                 ],
                               ),
                             ],

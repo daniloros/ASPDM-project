@@ -99,15 +99,15 @@ class _AdminPageState extends State<AdminPage> {
                                               var message;
                                               if (deleteUser == true) {
                                                 message =
-                                                    "User was deleted successfully";
+                                                    "Utente cancellato correttamente";
                                               } else {
-                                                message = "An errore occured";
+                                                message = "Si è verificato un errore";
                                               }
 
                                               showDialog(
                                                   context: context,
                                                   builder: (_) => AlertDialog(
-                                                        title: Text("Done"),
+                                                        title: Text("Confermato"),
                                                         content: Text(message),
                                                         actions: [
                                                           ElevatedButton(
@@ -152,11 +152,11 @@ class NoteDelete extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Warning'),
-      content: Text('Are you sure you want to delete this note?'),
+      title: Text('Attenzione'),
+      content: Text("Sei sicuro di voler eliminare l'utente?"),
       actions: <Widget>[
         ElevatedButton(
-          child: Text('Yes'),
+          child: Text('Si'),
           onPressed: () {
             Navigator.of(context).pop(true);
           },

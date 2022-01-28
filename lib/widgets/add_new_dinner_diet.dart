@@ -76,14 +76,14 @@ class _AddNewDinnerDietState extends State<AddNewDinnerDiet> {
                         child: TextFormField(
                           controller: controllerCarboType,
                           decoration: const InputDecoration(
-                              labelText: "Carbo type",
+                              labelText: "Tipo Carboidrati",
                               border: OutlineInputBorder(),
                               errorBorder: OutlineInputBorder(
                                   borderSide:
                                       BorderSide(color: Colors.red, width: 5))),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "this field is required";
+                              return "Questo campo è obbligatorio";
                             }
                           },
                         ),
@@ -99,14 +99,14 @@ class _AddNewDinnerDietState extends State<AddNewDinnerDiet> {
                             FilteringTextInputFormatter.digitsOnly
                           ],
                           decoration: const InputDecoration(
-                              labelText: "Carbo gr",
+                              labelText: "Gr Carboidrati",
                               border: OutlineInputBorder(),
                               errorBorder: OutlineInputBorder(
                                   borderSide:
                                       BorderSide(color: Colors.red, width: 5))),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "this field is required";
+                              return "Questo campo è obbligatorio";
                             }
                           },
                         ),
@@ -123,14 +123,14 @@ class _AddNewDinnerDietState extends State<AddNewDinnerDiet> {
                         child: TextFormField(
                           controller: controllerProteinType,
                           decoration: const InputDecoration(
-                              labelText: "Protein type",
+                              labelText: "Tipo Proteine",
                               border: OutlineInputBorder(),
                               errorBorder: OutlineInputBorder(
                                   borderSide:
                                       BorderSide(color: Colors.red, width: 5))),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "this field is required";
+                              return "Questo campo è obbligatorio";
                             }
                           },
                         ),
@@ -146,14 +146,14 @@ class _AddNewDinnerDietState extends State<AddNewDinnerDiet> {
                             FilteringTextInputFormatter.digitsOnly
                           ],
                           decoration: const InputDecoration(
-                              labelText: "Protein gr",
+                              labelText: "Gr Proteine",
                               border: OutlineInputBorder(),
                               errorBorder: OutlineInputBorder(
                                   borderSide:
                                       BorderSide(color: Colors.red, width: 5))),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "this field is required";
+                              return "Questo campo è obbligatorio";
                             }
                           },
                         ),
@@ -170,14 +170,14 @@ class _AddNewDinnerDietState extends State<AddNewDinnerDiet> {
                         child: TextFormField(
                           controller: controllerVegetableType,
                           decoration: const InputDecoration(
-                              labelText: "Vegetable type",
+                              labelText: "Tipo Verdura",
                               border: OutlineInputBorder(),
                               errorBorder: OutlineInputBorder(
                                   borderSide:
                                       BorderSide(color: Colors.red, width: 5))),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "this field is required";
+                              return "Questo campo è obbligatorio";
                             }
                           },
                         ),
@@ -193,14 +193,14 @@ class _AddNewDinnerDietState extends State<AddNewDinnerDiet> {
                             FilteringTextInputFormatter.digitsOnly
                           ],
                           decoration: const InputDecoration(
-                              labelText: "Vegetable Gr",
+                              labelText: "Gr Verdura",
                               border: OutlineInputBorder(),
                               errorBorder: OutlineInputBorder(
                                   borderSide:
                                       BorderSide(color: Colors.red, width: 5))),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "this field is required";
+                              return "Questo campo è obbligatorio";
                             }
                           },
                         ),
@@ -217,14 +217,14 @@ class _AddNewDinnerDietState extends State<AddNewDinnerDiet> {
                         child: TextFormField(
                           controller: controllerFatType,
                           decoration: const InputDecoration(
-                              labelText: "Lipids type",
+                              labelText: "Tipo Grasso",
                               border: OutlineInputBorder(),
                               errorBorder: OutlineInputBorder(
                                   borderSide:
                                       BorderSide(color: Colors.red, width: 5))),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "this field is required";
+                              return "Questo campo è obbligatorio";
                             }
                           },
                         ),
@@ -240,14 +240,14 @@ class _AddNewDinnerDietState extends State<AddNewDinnerDiet> {
                             FilteringTextInputFormatter.digitsOnly
                           ],
                           decoration: const InputDecoration(
-                              labelText: "Lipds Gr",
+                              labelText: "Gr Grassi",
                               border: OutlineInputBorder(),
                               errorBorder: OutlineInputBorder(
                                   borderSide:
                                       BorderSide(color: Colors.red, width: 5))),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "this field is required";
+                              return "Questo campo è obbligatorio";
                             }
                           },
                         ),
@@ -256,7 +256,7 @@ class _AddNewDinnerDietState extends State<AddNewDinnerDiet> {
                   ],
                 ),
                 ElevatedButton(
-                  child: Text('Done'),
+                  child: Text('Conferma'),
                   onPressed: () async {
                     debugPrint("Press");
 

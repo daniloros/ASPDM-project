@@ -35,7 +35,7 @@ class FollowUp extends StatelessWidget{
              mainAxisSize: isLandscape ? MainAxisSize.max : MainAxisSize.min,
              crossAxisAlignment: isLandscape ? CrossAxisAlignment.center :CrossAxisAlignment.start,
              children: [
-               Text("Weight: ${item.weight} kg",
+               Text("Peso: ${item.weight} kg",
                    style: const TextStyle(
                        fontSize: 18,
                        fontWeight:
@@ -51,7 +51,7 @@ class FollowUp extends StatelessWidget{
                const SizedBox(
                  height: 15,
                ),
-               Text("Hydration: ${item.hydro} %",
+               Text("Idratazione: ${item.hydro} %",
                    style: const TextStyle(
                        fontSize: 18,
                        fontWeight:
@@ -59,7 +59,7 @@ class FollowUp extends StatelessWidget{
                const SizedBox(
                  height: 15,
                ),
-               Text("Body Fat: ${item.bodyFat} %",
+               Text("Massa Grassa: ${item.bodyFat} %",
                    style: const TextStyle(
                        fontSize: 18,
                        fontWeight:
@@ -68,7 +68,7 @@ class FollowUp extends StatelessWidget{
                  height: 15,
                ),
                Text(
-                   "Lean Mass: ${item.leanMass} kg",
+                   "Massa Magra: ${item.leanMass} kg",
                    style: const TextStyle(
                        fontSize: 18,
                        fontWeight:

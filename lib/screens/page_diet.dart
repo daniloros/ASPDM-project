@@ -34,18 +34,20 @@ class _DietPageState extends State<DietPage>
     debugPrint('Building $runtimeType');
     return Scaffold(
         backgroundColor: const Color(0xFFE9E9E9),
-        appBar: AppBar(
-          title: const Text('Fetch Data Example'),
-          bottom: TabBar(
-            tabs: const [
-              Tab(
-                text: "Lunch",
-              ),
-              Tab(
-                text: "Dinner",
-              ),
-            ],
-            controller: _ctrl,
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(56),
+          child: AppBar(
+            bottom: TabBar(
+              tabs: const [
+                Tab(
+                  text: "Pranzo",
+                ),
+                Tab(
+                  text: "Cena",
+                ),
+              ],
+              controller: _ctrl,
+            ),
           ),
         ),
         body: Stack(
