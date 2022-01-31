@@ -4,7 +4,7 @@ import 'package:healty/controller/admin_controller.dart';
 import 'package:healty/controller/diet_page_controller.dart';
 import 'package:healty/model/user.dart';
 import 'package:healty/providers/admin_provider.dart';
-import 'package:healty/screens/user_details_widget.dart';
+import 'package:healty/screens/settings_page.dart';
 import 'package:healty/widgets/user_list_displayer.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/src/provider.dart';
@@ -64,14 +64,17 @@ class _AdminPageState extends State<AdminPage> {
                                   final item = context
                                       .read<AdminController>()
                                       .userList[index];
+                                  debugPrint("item: ${item.username}");
                                   return GestureDetector(
                                       onTap: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    UserDetailsWidget(
-                                                      user: item,
-                                                    )));
+                                        Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                          builder: (context) =>
+                                              // UserDetailsWidget(
+                                              //   user: item,
+                                              // )
+                                              SettingsPage(item),
+                                        ));
                                       },
                                       child: Dismissible(
                                           key: Key(item.id!),
@@ -101,13 +104,15 @@ class _AdminPageState extends State<AdminPage> {
                                                 message =
                                                     "Utente cancellato correttamente";
                                               } else {
-                                                message = "Si è verificato un errore";
+                                                message =
+                                                    "Si è verificato un errore";
                                               }
 
                                               showDialog(
                                                   context: context,
                                                   builder: (_) => AlertDialog(
-                                                        title: Text("Confermato"),
+                                                        title:
+                                                            Text("Confermato"),
                                                         content: Text(message),
                                                         actions: [
                                                           ElevatedButton(

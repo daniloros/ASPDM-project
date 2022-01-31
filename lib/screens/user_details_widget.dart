@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:healty/controller/admin_controller.dart';
 import 'package:healty/model/user.dart';
-import 'package:healty/screens/page_diet.dart';
+import 'package:healty/widgets/change_info_user_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/src/provider.dart';
-
-import '../widgets/change_info_user_widget.dart';
 
 class UserDetailsWidget extends StatefulWidget {
   final User? user;
@@ -18,7 +16,6 @@ class UserDetailsWidget extends StatefulWidget {
 }
 
 class _UserDetailsWidgetState extends State<UserDetailsWidget> {
-
   void initState() {
     super.initState();
 
@@ -26,15 +23,13 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
     //   context.read<AdminController>().loadUserDetails(widget.user!.id);
     // });
 
-    _fetchNotes();
+    //_fetchNotes();
   }
 
   _fetchNotes() async {
-
     SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
       context.read<AdminController>().loadUserDetails(widget.user!.id);
     });
-    ;
   }
 
   @override
@@ -103,15 +98,13 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                       DataRow(cells: [
                                         const DataCell(Text('massa magra')),
                                         DataCell(
-                                          Text(userDetails.leanMass
-                                              .toString()),
+                                          Text(userDetails.leanMass.toString()),
                                         ),
                                       ]),
                                       DataRow(cells: [
                                         const DataCell(Text('massa grassa')),
                                         DataCell(
-                                          Text(
-                                              userDetails.bodyFat.toString()),
+                                          Text(userDetails.bodyFat.toString()),
                                         ),
                                       ]),
                                       DataRow(cells: [
@@ -130,31 +123,17 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                   ),
                                 ),
                               ),
-                              Row(
-                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  ElevatedButton(
-                                      onPressed: () async {
-                                        Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) => DietPage()
-                                          )
-                                        );
-
-                                      },
-                                      child: const Text("Modifica Dieta")),
-                                  ElevatedButton(
-                                      onPressed: () async {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    ChangeInfoUser(
-                                                      user: userDetails,
-                                                    ))).then((userDetails) => _fetchNotes());
-                                      },
-                                      child: const Text("Modifica Dati")),
-                                ],
-                              ),
+                              ElevatedButton(
+                                  onPressed: () async {
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(
+                                            builder: (context) =>
+                                                ChangeInfoUser(
+                                                  user: userDetails,
+                                                )))
+                                        .then((userDetails) => _fetchNotes());
+                                  },
+                                  child: const Text("Modifica Dati Cliente")),
                             ],
                           ),
                         ),

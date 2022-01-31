@@ -5,7 +5,6 @@ import 'package:healty/screens/page_diet.dart';
 import 'package:healty/screens/page_summary_page.dart';
 import 'package:provider/provider.dart';
 
-import 'page_add_new_diet.dart';
 
 class MyHomePage extends StatefulWidget {
   final String username;
@@ -23,9 +22,8 @@ class _MyHomePageState extends State<MyHomePage> {
   final screens = [
     const Summary(),
     const DietPage(),
-    const AddNewDiet(),
+    // SettingsPage(),
   ];
-
 
   @override
   void initState() {
@@ -39,32 +37,30 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     debugPrint('Building $runtimeType');
 
     return Scaffold(
       backgroundColor: const Color(0xFFE9E9E9),
-      appBar: (currentIndex == 1 || currentIndex == 2) ? null : AppBar(
-        title: Text(_title),
-        actions: [
-          IconButton(
-            onPressed: () {
-              context.read<User>().logout();
-              context.read<DietPageController>().logout();
-            },
-            icon: const Icon(Icons.logout),
-            tooltip: "Logout",
-          )
-        ],
-      ),
+      appBar: (currentIndex == 1 || currentIndex == 2)
+          ? null
+          : AppBar(
+              title: Text(_title),
+              actions: [
+                // IconButton(
+                //   onPressed: () {
+                //     context.read<User>().logout();
+                //     context.read<DietPageController>().logout();
+                //   },
+                //   icon: const Icon(Icons.logout),
+                //   tooltip: "Logout",
+                // )
+              ],
+            ),
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        selectedIconTheme: const IconThemeData(
-          color: Colors.blueAccent
-        ),
+        selectedIconTheme: const IconThemeData(color: Colors.blueAccent),
         unselectedIconTheme: const IconThemeData(
           color: Colors.black12,
         ),
@@ -73,12 +69,22 @@ class _MyHomePageState extends State<MyHomePage> {
           debugPrint("tab $index selected");
           setState(() {
             currentIndex = index;
-            switch(index){
-              case 0 : { _title = "${widget.username} Benvenuto"; }
+            switch (index) {
+              case 0:
+                {
+                  _title = "${widget.username} Benvenuto";
+                }
                 break;
-              case 1 : { _title = "Dieta"; }
+              case 1:
+                {
+                  _title = "Dieta";
+                }
                 break;
-              case 2 : { _title = "Aggiungi nuova dieta"; }
+              case 2:
+                {
+                  context.read<User>().logout();
+                  context.read<DietPageController>().logout();
+                }
                 break;
             }
           });
@@ -90,15 +96,39 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
-            label: "Diete",
+            label: "Dieta",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.library_add),
-            label: "Crea nuova Dieta",
+            icon: Icon(Icons.logout),
+            label: "Esci",
           ),
         ],
       ),
     );
+  }
+}
 
+class DoingLogout extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text('Attenzione'),
+      content: Text("Sei sicuro di voler effettuare il Logout?"),
+      actions: <Widget>[
+        ElevatedButton(
+          child: Text('Si'),
+          onPressed: () {
+            context.read<User>().logout();
+            context.read<DietPageController>().logout();
+          },
+        ),
+        ElevatedButton(
+          child: Text('No'),
+          onPressed: () {
+            Navigator.of(context).pop(false);
+          },
+        ),
+      ],
+    );
   }
 }

@@ -19,14 +19,20 @@ class _LunchDietPage extends State<LunchDietPage> {
   void initState() {
     super.initState();
 
-    var typeUser = context.read<User>().username;
+    var typeUser = context
+        .read<User>()
+        .username;
 
     if (typeUser != "Admin") {
       SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
-        debugPrint("Call loadDietLunch ${context.read<User>().username}");
+        debugPrint("Call loadDietLunch ${context
+            .read<User>()
+            .username}");
         context
             .read<DietPageController>()
-            .loadDietLunch(context.read<User>().username);
+            .loadDietLunch(context
+            .read<User>()
+            .username);
       });
     } else {
       _fetchDiet();
@@ -36,10 +42,16 @@ class _LunchDietPage extends State<LunchDietPage> {
   _fetchDiet() async {
     SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
       debugPrint(
-          "Call loadDietLunch for Admin ${context.read<AdminController>().userDetails!.username}");
+          "Call loadDietLunch for Admin ${context
+              .read<AdminController>()
+              .userDetails!
+              .username}");
       context
           .read<DietPageController>()
-          .loadDietLunch(context.read<AdminController>().userDetails!.username);
+          .loadDietLunch(context
+          .read<AdminController>()
+          .userDetails!
+          .username);
     });
   }
 
@@ -52,25 +64,46 @@ class _LunchDietPage extends State<LunchDietPage> {
   Widget build(BuildContext context) {
     debugPrint('Building $runtimeType');
     return Scaffold(
-        floatingActionButton: Builder(builder: (context) {
-          debugPrint(context.read<User>().username);
-          if (context.read<User>().username == "Admin") {
-            return FloatingActionButton(
-              child: const Icon(Icons.add),
-              onPressed: () async {
-                debugPrint("Hai Cliccato il floating button");
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => AddNewLunchDiet())).then((userDetails) => _fetchDiet());
-              },
-            );
-          } else
-            return Container();
-        }),
-        body: Stack(
+      appBar: context
+          .read<User>()
+          .username == "Admin"
+          ? AppBar(title: Text('Pranzo'))
+          : null,
+      floatingActionButton: context
+          .read<User>()
+          .username == "Admin"
+          ? FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () async {
+          debugPrint("Hai Cliccato il floating button");
+          Navigator.of(context)
+              .push(MaterialPageRoute(
+              builder: (context) => AddNewLunchDiet()))
+              .then((userDetails) => _fetchDiet());
+        },
+      )
+          : Container(),
+      body: Stack(
           fit: StackFit.expand,
           children: [
-            DietLunchWidget(),
-          ],
-        ));
+          DietLunchWidget(),
+      context
+          .read<User>()
+          .username == "Admin"
+          ? Center(
+        child: Selector<DietPageController, bool>(
+          selector: (context, state) => state.isLoading,
+          builder: (context, isLoading, _) {
+            if (isLoading) {
+              return const CircularProgressIndicator();
+            } else {
+              return const SizedBox.shrink();
+            }
+          },
+        ),
+      )
+          : SizedBox(),
+      ],
+    ));
   }
 }

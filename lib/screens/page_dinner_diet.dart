@@ -18,13 +18,17 @@ class _DinnerDietPageState extends State<DinnerDietPage> {
   @override
   void initState() {
     super.initState();
-    var typeUser = context.read<User>().username;
+    var typeUser = context
+        .read<User>()
+        .username;
 
     if (typeUser != "Admin") {
       SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
         context
             .read<DietPageController>()
-            .loadDietDinner(context.read<User>().username);
+            .loadDietDinner(context
+            .read<User>()
+            .username);
       });
     } else {
       _fetchDiet();
@@ -35,9 +39,14 @@ class _DinnerDietPageState extends State<DinnerDietPage> {
   _fetchDiet() async {
     SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
       debugPrint(
-          "Call loadDietLunch for Admin ${context.read<User>().username}");
+          "Call loadDietLunch for Admin ${context
+              .read<User>()
+              .username}");
       context.read<DietPageController>().loadDietDinner(
-          context.read<AdminController>().userDetails!.username);
+          context
+              .read<AdminController>()
+              .userDetails!
+              .username);
     });
   }
 
@@ -50,27 +59,44 @@ class _DinnerDietPageState extends State<DinnerDietPage> {
   Widget build(BuildContext context) {
     debugPrint('Building $runtimeType');
     return Scaffold(
-        floatingActionButton: Builder(builder: (context) {
-          debugPrint(context.read<User>().username);
-          if (context.read<User>().username == "Admin") {
-            return FloatingActionButton(
-              child: const Icon(Icons.add),
-              onPressed: () async {
-                debugPrint("Hai Cliccato il floating button");
-                //await context.read<ToDoList>().add("Nuova cosa da fare");
+      appBar: context
+          .read<User>()
+          .username == "Admin" ? AppBar(title: Text('Cena')) : null,
+      floatingActionButton: context
+          .read<User>()
+          .username == "Admin" ? FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () async {
+          debugPrint("Hai Cliccato il floating button");
+          //await context.read<ToDoList>().add("Nuova cosa da fare");
 
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => AddNewDinnerDiet())).then((userDetails) => _fetchDiet());
-              },
-            );
-          } else
-            return Container();
-        }),
-        body: Stack(
+          Navigator.of(context)
+              .push(
+              MaterialPageRoute(builder: (context) => AddNewDinnerDiet()))
+              .then((userDetails) => _fetchDiet());
+        },
+      ) : Container(),
+      body: Stack(
           fit: StackFit.expand,
           children: [
-            DietDinnerWidget(),
-          ],
-        ));
+          DietDinnerWidget(),
+      context
+          .read<User>()
+          .username == "Admin"
+          ? Center(
+        child: Selector<DietPageController, bool>(
+          selector: (context, state) => state.isLoading,
+          builder: (context, isLoading, _) {
+            if (isLoading) {
+              return const CircularProgressIndicator();
+            } else {
+              return const SizedBox.shrink();
+            }
+          },
+        ),
+      )
+          : SizedBox(),
+      ],
+    ));
   }
 }

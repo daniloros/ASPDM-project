@@ -46,6 +46,8 @@ dependencies:
 
   json_annotation: ^4.4.0
 
+  settings_ui: ^2.0.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
