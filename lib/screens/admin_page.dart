@@ -5,6 +5,7 @@ import 'package:healty/controller/diet_page_controller.dart';
 import 'package:healty/model/user.dart';
 import 'package:healty/providers/admin_provider.dart';
 import 'package:healty/screens/settings_page.dart';
+import 'package:healty/widgets/add_new_user.dart';
 import 'package:healty/widgets/user_list_displayer.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/src/provider.dart';
@@ -18,14 +19,19 @@ class _AdminPageState extends State<AdminPage> {
   void initState() {
     super.initState();
 
-    SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
-      context.read<AdminController>().loadUserList();
-    });
+    _fetchUsers();
+
   }
 
   @override
   void dispose() {
     super.dispose();
+  }
+
+  _fetchUsers() async{
+    SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
+      context.read<AdminController>().loadUserList();
+    });
   }
 
   @override
@@ -44,6 +50,16 @@ class _AdminPageState extends State<AdminPage> {
               tooltip: "Logout",
             )
           ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.person_add),
+          onPressed: () {
+            Navigator.of(context)
+                .push(
+                MaterialPageRoute(builder: (context) => AddNewUser()))
+                .then((userDetails) => _fetchUsers());
+
+          },
         ),
         body: Stack(
           fit: StackFit.expand,
@@ -77,7 +93,7 @@ class _AdminPageState extends State<AdminPage> {
                                         ));
                                       },
                                       child: Dismissible(
-                                          key: Key(item.id!),
+                                          key: UniqueKey(),
                                           direction:
                                               DismissDirection.startToEnd,
                                           onDismissed: (direction) {},
@@ -120,6 +136,7 @@ class _AdminPageState extends State<AdminPage> {
                                                                 Navigator.of(
                                                                         context)
                                                                     .pop();
+                                                                _fetchUsers();
                                                               },
                                                               child: Text("OK"))
                                                         ],

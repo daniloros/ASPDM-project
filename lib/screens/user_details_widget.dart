@@ -63,79 +63,357 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                         body: Container(
                           margin: const EdgeInsets.all(8),
                           padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 30),
-                          child: Column(
-                            children: [
-                              Theme(
-                                data: Theme.of(context).copyWith(
-                                  dividerColor: Colors.transparent,
+                              horizontal: 30),
+                          child: isLandscape
+                              ? Row(
+                                  children: [
+                                    Theme(
+                                      data: Theme.of(context).copyWith(
+                                        dividerColor: Colors.transparent,
+                                      ),
+                                      child: Expanded(
+                                        child: InteractiveViewer(
+                                          constrained: false,
+                                          child: DataTable(
+                                            columns: const [
+                                              DataColumn(label: Text('')),
+                                              DataColumn(label: Text('')),
+                                            ],
+                                            rows: [
+                                              DataRow(cells: [
+                                                const DataCell(Text(
+                                                  'Nome',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18,
+                                                  ),
+                                                )),
+                                                DataCell(Text(userDetails.name!,
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18,
+                                                    ))),
+                                              ]),
+                                              DataRow(cells: [
+                                                const DataCell(Text('Cognome',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18,
+                                                    ))),
+                                                DataCell(
+                                                    Text(userDetails.surname!,
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 18,
+                                                        ))),
+                                              ]),
+                                              DataRow(cells: [
+                                                const DataCell(
+                                                    Text('Data di Nascita',
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 18,
+                                                        ))),
+                                                DataCell(
+                                                    Text(userDetails.birthday!,
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 18,
+                                                        ))),
+                                              ]),
+                                              DataRow(cells: [
+                                                const DataCell(Text('Peso',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18,
+                                                    ))),
+                                                DataCell(
+                                                  Text(
+                                                      userDetails.weight
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18,
+                                                      )),
+                                                ),
+                                              ]),
+                                              DataRow(cells: [
+                                                const DataCell(
+                                                    Text('Massa Magra',
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 18,
+                                                        ))),
+                                                DataCell(
+                                                  Text(
+                                                      userDetails.leanMass
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18,
+                                                      )),
+                                                ),
+                                              ]),
+                                              DataRow(cells: [
+                                                const DataCell(
+                                                    Text('Massa Grassa',
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 18,
+                                                        ))),
+                                                DataCell(
+                                                  Text(
+                                                      userDetails.bodyFat
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18,
+                                                      )),
+                                                ),
+                                              ]),
+                                              DataRow(cells: [
+                                                const DataCell(
+                                                    Text('Idratazione',
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 18,
+                                                        ))),
+                                                DataCell(
+                                                  Text(
+                                                      userDetails.hydro
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18,
+                                                      )),
+                                                ),
+                                              ]),
+                                              DataRow(cells: [
+                                                const DataCell(Text('BMR',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18,
+                                                    ))),
+                                                DataCell(
+                                                  Text(
+                                                      userDetails.bmr
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18,
+                                                      )),
+                                                ),
+                                              ]),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    ElevatedButton(
+                                        onPressed: () async {
+                                          Navigator.of(context)
+                                              .push(MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ChangeInfoUser(
+                                                        user: userDetails,
+                                                      )))
+                                              .then((userDetails) =>
+                                                  _fetchNotes());
+                                        },
+                                        child: const Text(
+                                            "Modifica Dati Cliente")),
+                                  ],
+                                )
+                              : Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Theme(
+                                      data: Theme.of(context).copyWith(
+                                        dividerColor: Colors.transparent,
+                                      ),
+                                      child: Expanded(
+                                        child: InteractiveViewer(
+                                          constrained: false,
+                                          child: DataTable(
+                                            columns: const [
+                                              DataColumn(label: Text('')),
+                                              DataColumn(label: Text('')),
+                                            ],
+                                            rows: [
+                                              DataRow(cells: [
+                                                const DataCell(Text(
+                                                  'Nome',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18,
+                                                  ),
+                                                )),
+                                                DataCell(Text(userDetails.name!,
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18,
+                                                    ))),
+                                              ]),
+                                              DataRow(cells: [
+                                                const DataCell(Text('Cognome',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18,
+                                                    ))),
+                                                DataCell(
+                                                    Text(userDetails.surname!,
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 18,
+                                                        ))),
+                                              ]),
+                                              DataRow(cells: [
+                                                const DataCell(
+                                                    Text('Data di Nascita',
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 18,
+                                                        ))),
+                                                DataCell(
+                                                    Text(userDetails.birthday!,
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 18,
+                                                        ))),
+                                              ]),
+                                              DataRow(cells: [
+                                                const DataCell(Text('Peso',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18,
+                                                    ))),
+                                                DataCell(
+                                                  Text(
+                                                      userDetails.weight
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18,
+                                                      )),
+                                                ),
+                                              ]),
+                                              DataRow(cells: [
+                                                const DataCell(
+                                                    Text('Massa Magra',
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 18,
+                                                        ))),
+                                                DataCell(
+                                                  Text(
+                                                      userDetails.leanMass
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18,
+                                                      )),
+                                                ),
+                                              ]),
+                                              DataRow(cells: [
+                                                const DataCell(
+                                                    Text('Massa Grassa',
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 18,
+                                                        ))),
+                                                DataCell(
+                                                  Text(
+                                                      userDetails.bodyFat
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18,
+                                                      )),
+                                                ),
+                                              ]),
+                                              DataRow(cells: [
+                                                const DataCell(
+                                                    Text('Idratazione',
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 18,
+                                                        ))),
+                                                DataCell(
+                                                  Text(
+                                                      userDetails.hydro
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18,
+                                                      )),
+                                                ),
+                                              ]),
+                                              DataRow(cells: [
+                                                const DataCell(Text('BMR',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18,
+                                                    ))),
+                                                DataCell(
+                                                  Text(
+                                                      userDetails.bmr
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18,
+                                                      )),
+                                                ),
+                                              ]),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    ElevatedButton(
+                                        onPressed: () async {
+                                          Navigator.of(context)
+                                              .push(MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ChangeInfoUser(
+                                                        user: userDetails,
+                                                      )))
+                                              .then((userDetails) =>
+                                                  _fetchNotes());
+                                        },
+                                        child: const Text(
+                                            "Modifica Dati Cliente")),
+                                  ],
                                 ),
-                                child: Expanded(
-                                  child: DataTable(
-                                    columns: const [
-                                      DataColumn(label: Text('')),
-                                      DataColumn(label: Text('')),
-                                    ],
-                                    rows: [
-                                      DataRow(cells: [
-                                        const DataCell(Text('Nome')),
-                                        DataCell(Text(userDetails.name!)),
-                                      ]),
-                                      DataRow(cells: [
-                                        const DataCell(Text('Cognome')),
-                                        DataCell(Text(userDetails.surname!)),
-                                      ]),
-                                      DataRow(cells: [
-                                        const DataCell(Text('Data di Nascita')),
-                                        DataCell(Text(userDetails.birthday!)),
-                                      ]),
-                                      DataRow(cells: [
-                                        const DataCell(Text('Peso')),
-                                        DataCell(
-                                          Text(userDetails.weight.toString()),
-                                        ),
-                                      ]),
-                                      DataRow(cells: [
-                                        const DataCell(Text('massa magra')),
-                                        DataCell(
-                                          Text(userDetails.leanMass.toString()),
-                                        ),
-                                      ]),
-                                      DataRow(cells: [
-                                        const DataCell(Text('massa grassa')),
-                                        DataCell(
-                                          Text(userDetails.bodyFat.toString()),
-                                        ),
-                                      ]),
-                                      DataRow(cells: [
-                                        const DataCell(Text('idratazione')),
-                                        DataCell(
-                                          Text(userDetails.hydro.toString()),
-                                        ),
-                                      ]),
-                                      DataRow(cells: [
-                                        const DataCell(Text('bmr')),
-                                        DataCell(
-                                          Text(userDetails.bmr.toString()),
-                                        ),
-                                      ]),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              ElevatedButton(
-                                  onPressed: () async {
-                                    Navigator.of(context)
-                                        .push(MaterialPageRoute(
-                                            builder: (context) =>
-                                                ChangeInfoUser(
-                                                  user: userDetails,
-                                                )))
-                                        .then((userDetails) => _fetchNotes());
-                                  },
-                                  child: const Text("Modifica Dati Cliente")),
-                            ],
-                          ),
                         ),
                       );
                     }

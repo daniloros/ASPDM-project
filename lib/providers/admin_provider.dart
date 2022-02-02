@@ -215,4 +215,31 @@ class AdminProvider {
     }
   }
 
+  static Future<bool> addNewUser(User newUser) async {
+    debugPrint("try to create new user");
+
+    final response = await http.post(
+        Uri.parse(
+            'https://dietflutterapp-685c.restdb.io/rest/utenti'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          "x-apikey": "6c2d6f4ac1a8d9943d70ee4a2ac0be41d7041",
+        },
+        body: json.encode(newUser.toJson())
+    );
+
+    var jsonTest = json.encode(newUser.toJson());
+
+    debugPrint(jsonTest);
+
+    debugPrint("POST result ${response.statusCode}");
+
+    if (response.statusCode == 201) {
+      return true;
+    } else {
+      debugPrint(response.statusCode.toString());
+      throw Exception("Errore di comunicazione");
+    }
+  }
+
 }
