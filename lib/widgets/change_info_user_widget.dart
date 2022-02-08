@@ -44,7 +44,7 @@ class _ChangeInfoUserState extends State<ChangeInfoUser> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Dettagli dieta"),
+        title: const Text("Dati della bioimpedenza"),
       ),
       body: Center(
         child: SingleChildScrollView(

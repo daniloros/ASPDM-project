@@ -43,41 +43,46 @@ class DietDinnerWidget extends StatelessWidget {
                                 builder: (context) => DietDetails(item)));
                           },
                           child: Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey,
-                                  blurRadius: 2.0,
-                                  offset: Offset(2.0, 2.0), // shadow direction: bottom right
-                                )
-                              ],
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                            margin: const EdgeInsets.only(right: 5, bottom: 10),
+                            child: Material(
+                              borderRadius: const BorderRadius.all(Radius.circular(20)),
+                              elevation: 4,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Center(
+                                  ClipRRect(
+                                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
                                     child: Image.asset(
-                                      "assets/images/diet-dinner-photo.jpg",
-                                      fit: BoxFit.contain,
+                                      "assets/images/current_diet.png",
+                                      //width: 300,
+                                      //fit: BoxFit.fitWidth,
                                     ),
                                   ),
-                                  Text(
-                                    item.id.toString(),
-                                    style:
-                                    Theme.of(context).textTheme.headline5,
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Ciao, ${item.userId}",
+                                          style:
+                                          Theme.of(context).textTheme.headline5,
+                                        ),
+                                        Text(
+                                          "Clicca per visualizzare la tua dieta corrente",
+                                          style:
+                                          Theme.of(context).textTheme.bodyText2,
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  Text(
-                                    item.userId!,
-                                    style:
-                                    Theme.of(context).textTheme.bodyText2,
+                                  const SizedBox(
+                                    height: 20,
                                   ),
                                 ],
                               ),
+
                             ),
                           ),
                         );

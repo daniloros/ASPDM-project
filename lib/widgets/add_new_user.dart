@@ -13,6 +13,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
   final _formKey = GlobalKey<FormState>();
   int currentStep = 0;
   bool isCompleted = false;
+  bool isObscure = true;
 
   late TextEditingController controllerName,
       controllerSurname,
@@ -88,6 +89,10 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                     debugPrint(hydro.toString());
                     debugPrint(bmr.toString());
 
+
+
+
+
                     var newUser = User(
                         password: controllerPassword.text,
                         admin: false,
@@ -104,6 +109,14 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                     debugPrint("New user: ${newUser.toString()}");
                     response = await AdminProvider.addNewUser(newUser);
                     debugPrint(response.toString());
+                    if (response) {
+                      const snackBar =
+                      SnackBar(content: Text("Utente aggiunto correttamente"));
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    } else {
+                      const snackBar = SnackBar(content: Text("Errore"));
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }
                     Navigator.of(context).pop();
 
                     //send Data to Server
@@ -241,12 +254,26 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                     padding: const EdgeInsets.all(10),
                     child: TextFormField(
                       controller: controllerPassword,
-                      decoration: const InputDecoration(
+                      obscureText: isObscure,
+                      decoration: InputDecoration(
                           labelText: "Password",
+                          suffixIcon: IconButton(
+                            color: Colors.grey,
+                            splashRadius: 1,
+                            icon: Icon(isObscure
+                                ? Icons.visibility_outlined
+                                : Icons.visibility_off_outlined),
+                            onPressed: (){
+                              setState(() {
+                                isObscure = !isObscure;
+                              });
+                            },
+                          ),
                           border: OutlineInputBorder(),
                           errorBorder: OutlineInputBorder(
                               borderSide:
-                                  BorderSide(color: Colors.red, width: 5))),
+                                  BorderSide(color: Colors.red, width: 5)),
+                      ),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Questo campo è obbligatorio";
@@ -496,9 +523,16 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
-                                  controllerPassword.text,
-                                  style: TextStyle(fontSize: 20),
+                                Builder(
+                                  builder: (context) {
+                                    var password = controllerPassword.text;
+                                    var passwordSize = controllerPassword.text.length -1 ;
+                                    String passwordToShow = password.replaceRange(1, passwordSize, '*' * (passwordSize -1));
+                                    return Text(
+                                      passwordToShow,
+                                      style: TextStyle(fontSize: 20),
+                                    );
+                                  }
                                 ),
                               ],
                             ),

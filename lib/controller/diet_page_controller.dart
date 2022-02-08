@@ -71,6 +71,7 @@ class DietPageController extends ChangeNotifier {
     try {
       final list = await DietProvider.loadDinnerDiet(username!);
       _dietDinnerList = list;
+      debugPrint(list.toString());
 
       final current = await DietProvider.loadCurrentDinnerDiet(username);
       if (current.id != "") {

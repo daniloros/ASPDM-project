@@ -84,6 +84,8 @@ flutter:
     - assets/images/lipids.png
     - assets/images/vegetable.png
     - assets/images/proteins_photo.png
+    - assets/images/diet_logo.png
+    - assets/images/current_diet.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

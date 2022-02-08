@@ -35,23 +35,6 @@ class DietItemDisplayer extends StatelessWidget {
                 ],
               ),
             ),
-
-            // Padding(
-            //   padding: const EdgeInsets.only(left: 8.0),
-            //   child: Column(
-            //       crossAxisAlignment: CrossAxisAlignment.start,
-            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //       mainAxisSize: MainAxisSize.min,
-            //       children: [
-            //         const SizedBox(
-            //           height: 20,
-            //         ),
-            //         Text(item.userId!),
-            //         Text(item.protein!),
-            //       ]
-            //
-            //   ),
-            // ),
             const SizedBox(
               height: 20,
             ),

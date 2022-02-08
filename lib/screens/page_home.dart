@@ -28,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    _title = "${widget.username} Benvenuto";
+    _title = "Benvenuto";
     //carichiamo i dati nel caso li avessimo
   }
 
@@ -47,16 +47,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ? null
           : AppBar(
               title: Text(_title),
-              actions: [
-                // IconButton(
-                //   onPressed: () {
-                //     context.read<User>().logout();
-                //     context.read<DietPageController>().logout();
-                //   },
-                //   icon: const Icon(Icons.logout),
-                //   tooltip: "Logout",
-                // )
-              ],
             ),
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(

@@ -42,6 +42,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     debugPrint('Building $runtimeType');
 
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
@@ -54,12 +57,24 @@ class _LoginPageState extends State<LoginPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Login to your\naccount',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline4!
-                        .copyWith(color: Colors.black),
+                  Row(
+                    children: [
+                      Text(
+                        'Accedi al tuo\naccount',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline4!
+                            .copyWith(color: Colors.black),
+                      ),
+                      Padding(
+                        padding: isLandscape ? EdgeInsets.only(left: 30) : const EdgeInsets.only(left: 15.0),
+                        child: Image.asset(
+                          'assets/images/diet_logo.png',
+                          height: 100,
+                          width: 120,
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(
                     height: 20,
@@ -70,46 +85,21 @@ class _LoginPageState extends State<LoginPage> {
                     height: 4,
                   ),
                 ],
+
               ),
-              const SizedBox(
+              isLandscape ? SizedBox() : const SizedBox(
                 height: 48,
               ),
-              Form(
-                key: _formUserKey,
-                child: Column(
-                  children: [
-                    TextFormField(
-                      controller: _ctrlUsername,
-                      decoration: const InputDecoration(
-                          icon: Icon(Icons.person),
-                          labelText: "Username",
-                          errorBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.red, width: 5))),
-                      validator: (val) {
-                        if (val!.isEmpty) {
-                          return "Questo campo è obbligatorio";
-                        }
-                      },
-                    ),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                    Container(
-                      child: TextFormField(
-                        controller: _ctrlPassword,
-                        obscureText: !passwordVisible,
-                        decoration: InputDecoration(
-                            icon: const Icon(Icons.lock),
-                            labelText: "Password",
-                            suffixIcon: IconButton(
-                              color: Colors.grey,
-                              splashRadius: 1,
-                              icon: Icon(passwordVisible
-                                  ? Icons.visibility_outlined
-                                  : Icons.visibility_off_outlined),
-                              onPressed: togglePassword,
-                            ),
+              SingleChildScrollView(
+                child: Form(
+                  key: _formUserKey,
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        controller: _ctrlUsername,
+                        decoration: const InputDecoration(
+                            icon: Icon(Icons.person),
+                            labelText: "Username",
                             errorBorder: OutlineInputBorder(
                                 borderSide:
                                     BorderSide(color: Colors.red, width: 5))),
@@ -119,15 +109,40 @@ class _LoginPageState extends State<LoginPage> {
                           }
                         },
                       ),
-                    ),
-                  ],
+                      isLandscape ? SizedBox(height: 10) : const SizedBox(
+                        height: 32,
+                      ),
+                      Container(
+                        child: TextFormField(
+                          controller: _ctrlPassword,
+                          obscureText: !passwordVisible,
+                          decoration: InputDecoration(
+                              icon: const Icon(Icons.lock),
+                              labelText: "Password",
+                              suffixIcon: IconButton(
+                                color: Colors.grey,
+                                splashRadius: 1,
+                                icon: Icon(passwordVisible
+                                    ? Icons.visibility_outlined
+                                    : Icons.visibility_off_outlined),
+                                onPressed: togglePassword,
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.red, width: 5))),
+                          validator: (val) {
+                            if (val!.isEmpty) {
+                              return "Questo campo è obbligatorio";
+                            }
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              const SizedBox(
-                height: 32,
-              ),
-              const SizedBox(
-                height: 32,
+              isLandscape ? SizedBox(height: 15,) : const SizedBox(
+                height: 62,
               ),
               Center(
                 child: ElevatedButton(

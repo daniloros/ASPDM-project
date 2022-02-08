@@ -13,7 +13,7 @@ class DietDetails extends StatelessWidget {
 
     return Scaffold(
       appBar: isLandscape ? null : AppBar(
-        title: Text("Diet ${dietDetails.id} Details"),
+        title: Text("Dieta"),
       ),
       body: SingleChildScrollView(
         child: Container(

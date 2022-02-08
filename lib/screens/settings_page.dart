@@ -41,7 +41,7 @@ class _SettingsScreenState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Settings UI')),
+      appBar: AppBar(title: Text('Dettagli ')),
       body: buildSettingsList(),
     );
   }
@@ -89,76 +89,8 @@ class _SettingsScreenState extends State<SettingsPage> {
             )
           ],
         ),
-        // SettingsSection(
-        //   tiles: <SettingsTile>[
-        //     SettingsTile.navigation(
-        //       leading: Padding(padding: EdgeInsets.all(50),),
-        //       title: ElevatedButton(onPressed: () async {
-        //         final result = await showDialog(
-        //           context: context,
-        //           builder: (_) => NoteDelete(),
-        //         );
-        //         if (result) {
-        //           final deleteUser =
-        //               await AdminProvider
-        //               .deleteUser(context.read<AdminController>().userDetails!.id!);
-        //           var message;
-        //           if (deleteUser == true) {
-        //             message =
-        //             "Utente cancellato correttamente";
-        //           } else {
-        //             message =
-        //             "Si è verificato un errore";
-        //           }
-        //
-        //           showDialog(
-        //               context: context,
-        //               builder: (_) => AlertDialog(
-        //                 title:
-        //                 Text("Confermato"),
-        //                 content: Text(message),
-        //                 actions: [
-        //                   ElevatedButton(
-        //                       onPressed: () {
-        //                         Navigator.of(
-        //                             context)
-        //                             .pop();
-        //                       },
-        //                       child: Text("OK"))
-        //                 ],
-        //               ));
-        //         }
-        //         return result;
-        //       },
-        //       child: Text("Elimina Utente"),style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.red)),),
-        //     ),
-        //   ],
-        // ),
+
       ],
     );
   }
 }
-
-// class NoteDelete extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return AlertDialog(
-//       title: Text('Attenzione'),
-//       content: Text("Sei sicuro di voler eliminare l'utente?"),
-//       actions: <Widget>[
-//         ElevatedButton(
-//           child: Text('Si'),
-//           onPressed: () {
-//             Navigator.of(context).pop(true);
-//           },
-//         ),
-//         ElevatedButton(
-//           child: Text('No'),
-//           onPressed: () {
-//             Navigator.of(context).pop(false);
-//           },
-//         ),
-//       ],
-//     );
-//   }
-// }

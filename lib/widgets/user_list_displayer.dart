@@ -34,7 +34,7 @@ class UserListWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      user.username.toString(),
+                      "${user.name} ${user.surname}",
                       style: Theme.of(context).textTheme.headline5,
                     ),
                   ],
