@@ -242,4 +242,29 @@ class AdminProvider {
     }
   }
 
+  static Future<bool> checkUserExist(String username) async{
+    debugPrint("check if user exists");
+    final response = await http.get(
+        Uri.parse(
+            'https://dietflutterapp-685c.restdb.io/rest/utenti?q={"username" : "$username"}'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          "x-apikey": "6c2d6f4ac1a8d9943d70ee4a2ac0be41d7041",
+        },
+    );
+
+    var jsonResponse = jsonDecode(response.body);
+    debugPrint("jsonResponse ${jsonResponse.length}");
+    debugPrint("isEmpty ${jsonResponse.isEmpty}");
+    if(response.statusCode == 200){
+      if(jsonResponse.isEmpty){
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
 }

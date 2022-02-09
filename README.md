@@ -90,13 +90,18 @@ Qui il nutrizionista, attraverso un form a step, inserisce:
 Terminato l'inserimento dei dati, viene mostrata una **pagina di riepilogo** che permette la modifica dei dati nel caso in cui fossero scorretti, oppure la conferma di creazione del nuovo cliente:
 <p align="center"><img src="docs/images/add_new_user.gif" width="200"/> </p>
 
+<br>
 
+Il nutrizionista può eliminare un cliente effettuando uno swipe verso destra sul nome del cliente presente nella lista:
+<p align="center"><img src="docs/images/delete_user.gif" width="200"/> </p>
+
+<br>
 
 Al tap sul cliente, atterriamo nella **pagina di gestione del cliente**.
 <p align="center"><img src="docs/images/admin_user_detail.png" width="200"/> </p>
 
-Dove sarà possibile:
-1. visualizzare i dati anagrafici e i dati dell'analisi della composizione corporea relativi all'ultimo check:
+Dove sarà possibile: <br>
+**1.** visualizzare i dati anagrafici e i dati dell'analisi della composizione corporea relativi all'ultimo check:
 <p align="center"><img src="docs/images/admin_user_info.png" width="200"/> </p>
 
 Cliccando il tasto **Modifica** sarà possibile modificare i dati della composizione corporea con i nuovi dati provenienti dalla bioimpedenza. <br>
@@ -105,10 +110,10 @@ Nel caso in cui uno di questi campi risultasse vuoto viene mostrato un messaggio
 
 <br>
 
-2. Visualizzare le diete create per pranzo, con la possibilità di crearne una nuova:
+**2**. Visualizzare le diete create per pranzo, con la possibilità di crearne una nuova:
 <p align="center"><img src="docs/images/admin_lunch.png" width="200"/> </p>
 
-3. Visualiuzzare le diete create per cena, con la possibilità di crearne una nuova:
+**3**. Visualiuzzare le diete create per cena, con la possibilità di crearne una nuova:
 <p align="center"><img src="docs/images/admin_dinner.png" width="200"/> </p>
 
 
@@ -119,11 +124,6 @@ Quando viene creata una nuova dieta, nel caso ne fosse presente già una corrent
 <p align="center"><img src="docs/images/add_new_diet.gif" width="200"/> </p>
 
 Il procedimento di creazione di una dieta è il medesimo per il pranzo e la cena.
-<br>
-
-
-Il nutrizionista può eliminare un cliente effettuando uno swipe verso destra sul nome del cliente presente nella lista:
-<p align="center"><img src="docs/images/delete_user.gif" width="200"/> </p>
 
 <br>
 <br>

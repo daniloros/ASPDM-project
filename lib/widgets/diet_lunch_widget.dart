@@ -19,7 +19,7 @@ class DietLunchWidget extends StatelessWidget {
         selector: (context, model) => model.currentLunchDiet,
         builder: (context, value, _) {
           if (value == null) {
-            return const SizedBox();
+            return SizedBox(child: Image.asset("assets/images/attention_logo.png"),);
           }else if (isLandscape) {
             return DietDetails(
                 context.read<DietPageController>().currentLunchDiet!);
@@ -34,7 +34,6 @@ class DietLunchWidget extends StatelessWidget {
                       var item = context
                           .read<DietPageController>()
                           .currentLunchDiet;
-                      debugPrint("item item item");
                       debugPrint(item.toString());
 
                       if (item!.id == null) {

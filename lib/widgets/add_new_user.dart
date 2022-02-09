@@ -65,7 +65,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
           title: Text("Nuovo cliente"),
         ),
         body: isCompleted
-            ? Container()
+            ? Container(child: Image.asset("assets/images/clessidra.png"),)
             : Stepper(
                 type: StepperType.horizontal,
                 steps: getSteps(),
@@ -89,35 +89,41 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                     debugPrint(hydro.toString());
                     debugPrint(bmr.toString());
 
+                    var checkUser = await AdminProvider.checkUserExist(
+                        controllerUsername.text);
+                    debugPrint("checkUser: $checkUser");
+                    if (checkUser) {
+                      var newUser = User(
+                          password: controllerPassword.text,
+                          admin: false,
+                          username: controllerSurname.text,
+                          weight: weight,
+                          hydro: hydro,
+                          leanMass: leanMass,
+                          bodyFat: bodyFat,
+                          name: controllerName.text,
+                          bmr: bmr,
+                          surname: controllerSurname.text,
+                          birthday: controllerBirthday.text);
 
-
-
-
-                    var newUser = User(
-                        password: controllerPassword.text,
-                        admin: false,
-                        username: controllerSurname.text,
-                        weight: weight,
-                        hydro: hydro,
-                        leanMass: leanMass,
-                        bodyFat: bodyFat,
-                        name: controllerName.text,
-                        bmr: bmr,
-                        surname: controllerSurname.text,
-                        birthday: controllerBirthday.text);
-
-                    debugPrint("New user: ${newUser.toString()}");
-                    response = await AdminProvider.addNewUser(newUser);
-                    debugPrint(response.toString());
-                    if (response) {
-                      const snackBar =
-                      SnackBar(content: Text("Utente aggiunto correttamente"));
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      debugPrint("New user: ${newUser.toString()}");
+                      response = await AdminProvider.addNewUser(newUser);
+                      debugPrint(response.toString());
+                      if (response) {
+                        const snackBar = SnackBar(
+                            content: Text("Utente aggiunto correttamente"));
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      } else {
+                        const snackBar = SnackBar(content: Text("Errore"));
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      }
+                      Navigator.of(context).pop();
                     } else {
-                      const snackBar = SnackBar(content: Text("Errore"));
+                      const snackBar = SnackBar(
+                          content: Text("Username già in uso"));
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      Navigator.of(context).pop();
                     }
-                    Navigator.of(context).pop();
 
                     //send Data to Server
                   }
@@ -256,27 +262,29 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                       controller: controllerPassword,
                       obscureText: isObscure,
                       decoration: InputDecoration(
-                          labelText: "Password",
-                          suffixIcon: IconButton(
-                            color: Colors.grey,
-                            splashRadius: 1,
-                            icon: Icon(isObscure
-                                ? Icons.visibility_outlined
-                                : Icons.visibility_off_outlined),
-                            onPressed: (){
-                              setState(() {
-                                isObscure = !isObscure;
-                              });
-                            },
-                          ),
-                          border: OutlineInputBorder(),
-                          errorBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.red, width: 5)),
+                        labelText: "Password",
+                        suffixIcon: IconButton(
+                          color: Colors.grey,
+                          splashRadius: 1,
+                          icon: Icon(isObscure
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined),
+                          onPressed: () {
+                            setState(() {
+                              isObscure = !isObscure;
+                            });
+                          },
+                        ),
+                        border: OutlineInputBorder(),
+                        errorBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.red, width: 5)),
                       ),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Questo campo è obbligatorio";
+                        } if (value.length < 3) {
+                          return "Inserire almeno 3 caratteri";
                         }
                       },
                     ),
@@ -523,17 +531,19 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Builder(
-                                  builder: (context) {
-                                    var password = controllerPassword.text;
-                                    var passwordSize = controllerPassword.text.length -1 ;
-                                    String passwordToShow = password.replaceRange(1, passwordSize, '*' * (passwordSize -1));
-                                    return Text(
-                                      passwordToShow,
-                                      style: TextStyle(fontSize: 20),
-                                    );
-                                  }
-                                ),
+                                Builder(builder: (context) {
+                                  var password = controllerPassword.text;
+                                  var passwordSize =
+                                      controllerPassword.text.length - 1;
+                                  String passwordToShow = password.replaceRange(
+                                      1,
+                                      passwordSize,
+                                      '*' * (passwordSize - 1));
+                                  return Text(
+                                    passwordToShow,
+                                    style: TextStyle(fontSize: 20),
+                                  );
+                                }),
                               ],
                             ),
                           ]),
