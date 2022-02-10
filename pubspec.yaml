@@ -42,8 +42,6 @@ dependencies:
 
   shared_preferences: ^2.0.11
 
-  fluttertoast: ^8.0.8
-
   json_annotation: ^4.4.0
 
   settings_ui: ^2.0.2
@@ -88,6 +86,7 @@ flutter:
     - assets/images/current_diet.png
     - assets/images/clessidra.png
     - assets/images/attention_logo.png
+    - assets/images/not_archived_logo.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

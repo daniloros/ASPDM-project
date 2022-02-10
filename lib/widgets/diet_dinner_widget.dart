@@ -110,7 +110,7 @@ class DietDinnerWidget extends StatelessWidget {
                         builder: (context, value, _) {
                           debugPrint("Building Selector con ListView");
                           if (value == 0) {
-                            return const Text("Non ci sono diete Archiviate");
+                            return SizedBox(child: Image.asset("assets/images/not_archived_logo.png"),);
                           } else {
                             return ListView.builder(
                                 scrollDirection: Axis.horizontal,

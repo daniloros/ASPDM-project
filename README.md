@@ -11,21 +11,6 @@ Al nutrizionista sarà permesso inserire la dieta e i valori rilevati dal check 
 <br>
 <br>
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-<br>
-<br>
 
 ### Credenziali
 
@@ -36,6 +21,8 @@ Per il testing è possibile utilizzare un qualsiasi account già presente nel da
 | --------------------------- | ----------------- | ----------------- |
 | Admin | Admin            | Nutrizionista 
 | Danilo        | Danilo              | Cliente
+| Stefano        | Stefano              | Cliente
+| Rossi         | Test              | Cliente senza dieta
 
 <br>
 <br>
@@ -57,9 +44,9 @@ Premendo l'icona **Dieta** nella barra di navigazione inferiore l'utente atterra
 <br>
 La pagina presenterà due Tab:
  - Dieta pranzo: dove verrà visualizzata la dieta corrente e, se c'è ne sono, la lista di quelle vecchie ormai archiviate.
-   <p align="center"><img src="docs/images/click_dieta.gif" width="200"/> </p>
+   <p align="center"><img src="docs/images/user_lunch_diet.gif" width="200"/> </p>
  - Dieta cena: dove verrà visualizzata la dieta corrente e, se c'è ne sono, la lista di quelle vecchie ormai archiviate.
-  <p align="center"><img src="docs/images/swipe_dieta.gif" width="200"/></p>
+  <p align="center"><img src="docs/images/user_dinner_lunch.gif" width="200"/></p>
 
 
 Al tap su una dieta, che sia corrente o archiviata, si aprirà il dettaglio:
@@ -114,14 +101,14 @@ Nel caso in cui uno di questi campi risultasse vuoto viene mostrato un messaggio
 <p align="center"><img src="docs/images/admin_lunch.png" width="200"/> </p>
 
 **3**. Visualiuzzare le diete create per cena, con la possibilità di crearne una nuova:
-<p align="center"><img src="docs/images/admin_dinner.png" width="200"/> </p>
+<p align="center"><img src="docs/images/admin_dinner_page.png" width="200"/> </p>
 
 
 
 Nel caso in cui uno dei campi risultasse vuoto viene mostrato un messaggio di errore. Altrimenti si prosegue con la creazione delle dieta.
 <br>
 Quando viene creata una nuova dieta, nel caso ne fosse presente già una corrente, quest'ultima viene archiviata. In modo tale da poter presentare come dieta corrente quella più nuova.
-<p align="center"><img src="docs/images/add_new_diet.gif" width="200"/> </p>
+<p align="center"><img src="docs/images/admin_add_new_diet.gif" width="200"/> </p>
 
 Il procedimento di creazione di una dieta è il medesimo per il pranzo e la cena.
 
@@ -130,4 +117,14 @@ Il procedimento di creazione di una dieta è il medesimo per il pranzo e la cena
 
 ## Tecnologia
 
-L'applicazione si appoggia su [restdb.io](), un database NoSQL che offre un API REST
+L'applicazione si appoggia su [restdb.io](restdb.io), un database cloud NoSQL che permette l'accesso ai dati tramite HTTP come se fossero oggetti JSON. <br>
+L'acceso ai dati viene protetto tramite chiave API. Il database può essere interrogato tramite chiamate REST
+
+
+## Pacchetti aggiuntivi
+
+Nell'applicazione sono stati utilizzati diversi pacchetti aggiuntivi dichiarati come `dependencies` e `dev_dependencies`, fra questi quelli più interessanti sono:
+
+- [json_serializable](https://pub.dev/packages/json_serializable) libreria che genera codice per convertire automaticamente una classe dart da/in JSON
+- [settings_ui](https://pub.dev/packages/settings_ui) libreria che permette la creazione facilitata della schermata "Impostazioni". Usata per creare la pagina **gestione del cliente**
+- [http](https://pub.dev/packages/http) libreria utilizzata per le richieste HTTP
