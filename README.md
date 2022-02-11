@@ -125,6 +125,8 @@ L'acceso ai dati viene protetto tramite chiave API. Il database può essere inte
 
 Nell'applicazione sono stati utilizzati diversi pacchetti aggiuntivi dichiarati come `dependencies` e `dev_dependencies`, fra questi quelli più interessanti sono:
 
-- [json_serializable](https://pub.dev/packages/json_serializable) libreria che genera codice per convertire automaticamente una classe dart da/in JSON
-- [settings_ui](https://pub.dev/packages/settings_ui) libreria che permette la creazione facilitata della schermata "Impostazioni". Usata per creare la pagina **gestione del cliente**
-- [http](https://pub.dev/packages/http) libreria utilizzata per le richieste HTTP
+- [json_serializable](https://pub.dev/packages/json_serializable) libreria che genera codice per convertire automaticamente una classe dart da/in JSON.
+- [settings_ui](https://pub.dev/packages/settings_ui) libreria che permette la creazione facilitata della schermata "Impostazioni". Usata per creare la pagina **gestione del cliente**.
+- [http](https://pub.dev/packages/http) libreria utilizzata per le richieste HTTP.
+- [date_time_picker](https://pub.dev/packages/date_time_picker) libreria utilizzata creare facilmente un campo che permette l'inserimento di una data mediante l'uso del calendario. Il componente si comporta come se fosse un TextFormField.
+- [intl](https://pub.dev/packages/intl) libreria che fornisce funzionalità di internazionalizzazione e localizzazione, tra cui traduzione di messaggi, plurali e generi, formattazione e analisi di data/numero e testo bidirezionale.
