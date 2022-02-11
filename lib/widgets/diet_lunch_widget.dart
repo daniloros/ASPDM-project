@@ -11,7 +11,6 @@ class DietLunchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final height = MediaQuery.of(context).size.height;
     final isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
 
@@ -34,7 +33,6 @@ class DietLunchWidget extends StatelessWidget {
                       var item = context
                           .read<DietPageController>()
                           .currentLunchDiet;
-                      debugPrint(item.toString());
 
                       if (item!.id == null) {
                           return const Text("Non ci sono diete caricate");
@@ -57,8 +55,6 @@ class DietLunchWidget extends StatelessWidget {
                                         borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
                                         child: Image.asset(
                                           "assets/images/current_diet.png",
-                                           //width: 300,
-                                          //fit: BoxFit.fitWidth,
                                         ),
                                       ),
                                       Padding(
@@ -112,7 +108,7 @@ class DietLunchWidget extends StatelessWidget {
                     builder: (context, value, _) {
                       debugPrint("Building Selector con ListView");
                       if (value == 0) {
-                        return const Text("Non ci sono diete Archiviate");
+                        return SizedBox(child: Image.asset("assets/images/not_archived_logo.png"),);
                       } else {
                         return ListView.builder(
                             scrollDirection: Axis.horizontal,

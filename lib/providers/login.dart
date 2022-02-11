@@ -47,11 +47,8 @@ class Login {
         });
 
     debugPrint("GET result ${response.statusCode}");
-    debugPrint("jsonDecode is ${jsonDecode(response.body)[0]}");
 
     if (response.statusCode == 200) {
-      // var jsonResponse = jsonDecode(response.body);
-
       return User.fromJson(jsonDecode(response.body)[0]);
     } else {
       throw Exception("Errore di comunicazione");

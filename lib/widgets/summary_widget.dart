@@ -126,8 +126,8 @@ class SummaryWidget extends StatelessWidget {
                                           )
                                         ],
                                       ),
-                                      isLandscape ? SizedBox() : ListTile(
-                                        subtitle: Text(
+                                      isLandscape ? const SizedBox() : ListTile(
+                                        subtitle: const Text(
                                           "clicca qui per vedere i dettagli del tuo ultimo check",
                                           style: TextStyle(color: Colors.blue),
                                         ),
@@ -148,7 +148,7 @@ class SummaryWidget extends StatelessWidget {
                                   ),
                                 ),
                             ),
-                            !isLandscape ? SizedBox() :
+                            !isLandscape ? const SizedBox() :
                             Container(
                               color: Colors.white,
                                child: Row(

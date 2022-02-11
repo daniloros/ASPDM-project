@@ -20,11 +20,6 @@ class SettingsPage extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsPage> {
   void initState() {
     super.initState();
-
-    // SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
-    //   context.read<AdminController>().loadUserDetails(widget.user!.id);
-    // });
-
     _fetchNotes();
   }
 
@@ -41,7 +36,7 @@ class _SettingsScreenState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Dettagli ')),
+      appBar: AppBar(title: const Text('Dettagli ')),
       body: buildSettingsList(),
     );
   }
@@ -50,14 +45,13 @@ class _SettingsScreenState extends State<SettingsPage> {
     return SettingsList(
       sections: [
         SettingsSection(
-          title: Text('Check Cliente'),
+          title: const Text('Check Cliente'),
           tiles: <SettingsTile>[
             SettingsTile.navigation(
-              leading: Icon(Icons.supervised_user_circle),
-              title: Text('Dati Cliente'),
+              leading: const Icon(Icons.supervised_user_circle),
+              title: const Text('Dati Cliente'),
               onPressed: (_) {
-                debugPrint(
-                    "UserDetailsWidget ${context.read<AdminController>().userDetails!.username}");
+
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => UserDetailsWidget(
                           user: context.read<AdminController>().userDetails,
@@ -67,23 +61,23 @@ class _SettingsScreenState extends State<SettingsPage> {
           ],
         ),
         SettingsSection(
-          title: Text('Dieta'),
+          title: const Text('Dieta'),
           tiles: <SettingsTile>[
             SettingsTile.navigation(
-              leading: Icon(Icons.lunch_dining),
-              title: Text('Dieta Pranzo'),
+              leading: const Icon(Icons.lunch_dining),
+              title: const Text('Dieta Pranzo'),
               onPressed: (_) {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => LunchDietPage(),
+                  builder: (context) => const LunchDietPage(),
                 ));
               },
             ),
             SettingsTile.navigation(
-              leading: Icon(Icons.dinner_dining),
-              title: Text('Dieta Cena'),
+              leading: const Icon(Icons.dinner_dining),
+              title: const Text('Dieta Cena'),
               onPressed: (_) {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => DinnerDietPage(),
+                  builder: (context) => const DinnerDietPage(),
                 ));
               },
             )

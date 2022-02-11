@@ -30,7 +30,7 @@ class FollowUp extends StatelessWidget{
                    blurRadius: 10),
              ]),
          child: Padding(
-           padding: isLandscape ? EdgeInsets.only(top: 30.0, right: 30.0) : EdgeInsets.all(10),
+           padding: isLandscape ? const EdgeInsets.only(top: 30.0, right: 30.0) : const EdgeInsets.all(10),
            child: Column(
              mainAxisSize: isLandscape ? MainAxisSize.max : MainAxisSize.min,
              crossAxisAlignment: isLandscape ? CrossAxisAlignment.center :CrossAxisAlignment.start,
@@ -76,7 +76,7 @@ class FollowUp extends StatelessWidget{
                const SizedBox(
                  height: 15,
                ),
-               isLandscape ? SizedBox() : Align(
+               isLandscape ? const SizedBox() : Align(
                  alignment: Alignment.center,
                  child: ElevatedButton(
                      onPressed: () {

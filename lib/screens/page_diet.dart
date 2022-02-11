@@ -55,7 +55,7 @@ class _DietPageState extends State<DietPage>
           children: [
             TabBarView(
                 controller: _ctrl,
-                children: [
+                children: const [
                   LunchDietPage(),
                   DinnerDietPage(),
                 ],

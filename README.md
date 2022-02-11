@@ -75,7 +75,7 @@ Qui il nutrizionista, attraverso un form a step, inserisce:
 - i dati provenienti dalla bioimpedenza
 
 Terminato l'inserimento dei dati, viene mostrata una **pagina di riepilogo** che permette la modifica dei dati nel caso in cui fossero scorretti, oppure la conferma di creazione del nuovo cliente:
-<p align="center"><img src="docs/images/add_new_user.gif" width="200"/> </p>
+<p align="center"><img src="docs/images/new_user.gif" width="200"/> </p>
 
 <br>
 

@@ -4,7 +4,7 @@ import 'package:healty/model/diet.dart';
 class DietItemDisplayer extends StatelessWidget {
   final Diet item;
 
-  DietItemDisplayer(this.item);
+  const DietItemDisplayer(this.item);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class DietItemDisplayer extends StatelessWidget {
               padding: const EdgeInsets.only(top: 8.0, left: 8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   Text("Clicca per vedere"),
                   Text("la tua vecchia dieta"),
                 ],

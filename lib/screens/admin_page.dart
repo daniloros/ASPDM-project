@@ -80,15 +80,11 @@ class _AdminPageState extends State<AdminPage> {
                                   final item = context
                                       .read<AdminController>()
                                       .userList[index];
-                                  debugPrint("item: ${item.username}");
                                   return GestureDetector(
                                       onTap: () {
                                         Navigator.of(context)
                                             .push(MaterialPageRoute(
                                           builder: (context) =>
-                                              // UserDetailsWidget(
-                                              //   user: item,
-                                              // )
                                               SettingsPage(item),
                                         ));
                                       },
@@ -100,7 +96,7 @@ class _AdminPageState extends State<AdminPage> {
                                           background: Container(
                                               padding:
                                                   EdgeInsets.only(left: 16),
-                                              child: Align(
+                                              child: const Align(
                                                 child: Icon(Icons.delete,
                                                     color: Colors.white),
                                                 alignment: Alignment.centerLeft,
@@ -128,7 +124,7 @@ class _AdminPageState extends State<AdminPage> {
                                                   context: context,
                                                   builder: (_) => AlertDialog(
                                                         title:
-                                                            Text("Confermato"),
+                                                            const Text("Confermato"),
                                                         content: Text(message),
                                                         actions: [
                                                           ElevatedButton(
@@ -138,7 +134,7 @@ class _AdminPageState extends State<AdminPage> {
                                                                     .pop();
                                                                 _fetchUsers();
                                                               },
-                                                              child: Text("OK"))
+                                                              child: const Text("OK"))
                                                         ],
                                                       ));
                                             }
@@ -150,21 +146,6 @@ class _AdminPageState extends State<AdminPage> {
                         ),
                       ),
                     ])),
-            // Selector<GalleryState, bool>(
-            //   builder: (context, isLoading, _) {
-            //     if (isLoading) {
-            //       return Container(
-            //         color: Colors.black26,
-            //         child: const Center(
-            //           child: CircularProgressIndicator(),
-            //         ),
-            //       );
-            //     } else {
-            //       return const SizedBox.shrink();
-            //     }
-            //   },
-            //   selector: (context, state) => state.isLoading,
-            // )
           ],
         ));
   }
@@ -174,17 +155,17 @@ class NoteDelete extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Attenzione'),
-      content: Text("Sei sicuro di voler eliminare l'utente?"),
+      title: const Text('Attenzione'),
+      content: const Text("Sei sicuro di voler eliminare l'utente?"),
       actions: <Widget>[
         ElevatedButton(
-          child: Text('Si'),
+          child: const Text('Si'),
           onPressed: () {
             Navigator.of(context).pop(true);
           },
         ),
         ElevatedButton(
-          child: Text('No'),
+          child: const Text('No'),
           onPressed: () {
             Navigator.of(context).pop(false);
           },

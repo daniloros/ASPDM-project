@@ -40,7 +40,6 @@ class DietProvider {
 
   static Future<List<Diet>> loadDinnerDiet(String username) async {
     debugPrint("Loading dinner list diet");
-    debugPrint(username);
 
     final response = await http.get(
         Uri.parse('https://dietflutterapp-685c.restdb.io/rest/dietdinner?q={"isCurrent":false, "userId": "$username"}'),
@@ -77,11 +76,11 @@ class DietProvider {
 
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body);
-      debugPrint("jsonResponse ${jsonResponse.length}");
+
       if(jsonResponse.isEmpty){
         debugPrint("jsonResponse is empty");
         return Diet(id: "", carbo: "", carboGr: 0, isCurrent: false, lipids: "", lipidsGr: 0, protein: "", proteinGr: 0, userId: "", vegetable: "", vegetableGr: 0);
-        //return Diet("", "", "", 0, "", 0, "", 0, "", 0, false);
+
       } else {
         return Diet.fromJson(jsonDecode(response.body)[0]);
       }
@@ -101,13 +100,11 @@ class DietProvider {
         });
 
     debugPrint("GET result ${response.statusCode}");
-    debugPrint("response: ${response.body}");
 
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body);
       if(jsonResponse.isEmpty){
         return Diet(id: "", carbo: "", carboGr: 0, isCurrent: false, lipids: "", lipidsGr: 0, protein: "", proteinGr: 0, userId: "", vegetable: "", vegetableGr: 0);
-        // return Diet("", "", "", 0, "", 0, "", 0, "", 0, false);
       } else {
         return Diet.fromJson(jsonDecode(response.body)[0]);
       }

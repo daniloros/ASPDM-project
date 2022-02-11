@@ -57,7 +57,7 @@ class AdminProvider {
 
 
   static Future<bool> updateUser(User user) async {
-    debugPrint("Loading lunch diet list");
+    debugPrint("Call Update User");
 
     final response = await http.put(
         Uri.parse(
@@ -68,10 +68,6 @@ class AdminProvider {
         },
         body: json.encode(user.toJson())
         );
-
-    var jsonTest = json.encode(user.toJson());
-
-    debugPrint(jsonTest);
 
     debugPrint("PUT result ${response.statusCode}");
 
@@ -84,11 +80,7 @@ class AdminProvider {
   }
 
   static Future<bool> archiveLunchDiet(String userId) async {
-    debugPrint("update lunch diet for archive");
-
-    debugPrint(userId);
-
-
+    debugPrint("Archive Lunch Diet");
 
     final response = await http.patch(
         Uri.parse('https://dietflutterapp-685c.restdb.io/rest/dietlunch/$userId'),
@@ -101,7 +93,7 @@ class AdminProvider {
         })
     );
 
-    debugPrint("PATCH result ${response.statusCode}");
+    debugPrint("Archive Lunch Diet Call Result ${response.statusCode}");
 
     if (response.statusCode == 200) {
       return true;
@@ -113,7 +105,7 @@ class AdminProvider {
 
 
   static Future<bool> addNewLunchDiet(Diet newDiet) async {
-    debugPrint("Loading lunch diet list");
+    debugPrint("Add New Lunch Diet");
 
     final response = await http.post(
         Uri.parse(
@@ -124,10 +116,6 @@ class AdminProvider {
         },
         body: json.encode(newDiet.toJson())
     );
-
-    var jsonTest = json.encode(newDiet.toJson());
-
-    debugPrint(jsonTest);
 
     debugPrint("POST result ${response.statusCode}");
 
@@ -140,11 +128,7 @@ class AdminProvider {
   }
 
   static Future<bool> archiveDinnerDiet(String userId) async {
-    debugPrint("update lunch diet for archive");
-
-    debugPrint(userId);
-
-
+    debugPrint("Archive Dinner Diet");
 
     final response = await http.patch(
         Uri.parse('https://dietflutterapp-685c.restdb.io/rest/dietdinner/$userId'),
@@ -157,7 +141,7 @@ class AdminProvider {
         })
     );
 
-    debugPrint("PATCH result ${response.statusCode}");
+    debugPrint("Archive Dinner Diet Result ${response.statusCode}");
 
     if (response.statusCode == 200) {
       return true;
@@ -169,7 +153,7 @@ class AdminProvider {
 
 
   static Future<bool> addNewDinnerDiet(Diet newDiet) async {
-    debugPrint("Loading lunch diet list");
+    debugPrint("Add New Dinner Diet");
 
     final response = await http.post(
         Uri.parse(
@@ -181,11 +165,7 @@ class AdminProvider {
         body: json.encode(newDiet.toJson())
     );
 
-    var jsonTest = json.encode(newDiet.toJson());
-
-    debugPrint(jsonTest);
-
-    debugPrint("POST result ${response.statusCode}");
+    debugPrint("Add Nre DinnerDiner Result ${response.statusCode}");
 
     if (response.statusCode == 201) {
       return true;
@@ -196,7 +176,7 @@ class AdminProvider {
   }
 
   static Future<bool> deleteUser(String idUsername) async {
-    debugPrint("Loading lunch diet list");
+    debugPrint("Delete User");
 
     final response = await http.delete(
         Uri.parse(
@@ -216,7 +196,7 @@ class AdminProvider {
   }
 
   static Future<bool> addNewUser(User newUser) async {
-    debugPrint("try to create new user");
+    debugPrint("Create New User");
 
     final response = await http.post(
         Uri.parse(
@@ -228,11 +208,7 @@ class AdminProvider {
         body: json.encode(newUser.toJson())
     );
 
-    var jsonTest = json.encode(newUser.toJson());
-
-    debugPrint(jsonTest);
-
-    debugPrint("POST result ${response.statusCode}");
+    debugPrint("Create NewUser Result ${response.statusCode}");
 
     if (response.statusCode == 201) {
       return true;
@@ -243,7 +219,8 @@ class AdminProvider {
   }
 
   static Future<bool> checkUserExist(String username) async{
-    debugPrint("check if user exists");
+    debugPrint("Call for check if user exists");
+
     final response = await http.get(
         Uri.parse(
             'https://dietflutterapp-685c.restdb.io/rest/utenti?q={"username" : "$username"}'),
@@ -254,8 +231,7 @@ class AdminProvider {
     );
 
     var jsonResponse = jsonDecode(response.body);
-    debugPrint("jsonResponse ${jsonResponse.length}");
-    debugPrint("isEmpty ${jsonResponse.isEmpty}");
+
     if(response.statusCode == 200){
       if(jsonResponse.isEmpty){
         return true;

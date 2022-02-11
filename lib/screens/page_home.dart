@@ -22,14 +22,12 @@ class _MyHomePageState extends State<MyHomePage> {
   final screens = [
     const Summary(),
     const DietPage(),
-    // SettingsPage(),
   ];
 
   @override
   void initState() {
     super.initState();
     _title = "Benvenuto";
-    //carichiamo i dati nel caso li avessimo
   }
 
   @override
@@ -56,7 +54,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         currentIndex: currentIndex,
         onTap: (index) {
-          debugPrint("tab $index selected");
           setState(() {
             currentIndex = index;
             switch (index) {
@@ -102,18 +99,18 @@ class DoingLogout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Attenzione'),
-      content: Text("Sei sicuro di voler effettuare il Logout?"),
+      title: const Text('Attenzione'),
+      content: const Text("Sei sicuro di voler effettuare il Logout?"),
       actions: <Widget>[
         ElevatedButton(
-          child: Text('Si'),
+          child: const Text('Si'),
           onPressed: () {
             context.read<User>().logout();
             context.read<DietPageController>().logout();
           },
         ),
         ElevatedButton(
-          child: Text('No'),
+          child: const Text('No'),
           onPressed: () {
             Navigator.of(context).pop(false);
           },

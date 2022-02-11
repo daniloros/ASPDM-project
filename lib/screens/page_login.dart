@@ -67,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                             .copyWith(color: Colors.black),
                       ),
                       Padding(
-                        padding: isLandscape ? EdgeInsets.only(left: 30) : const EdgeInsets.only(left: 15.0),
+                        padding: isLandscape ? const EdgeInsets.only(left: 30) : const EdgeInsets.only(left: 15.0),
                         child: Image.asset(
                           'assets/images/diet_logo.png',
                           height: 100,
@@ -87,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                 ],
 
               ),
-              isLandscape ? SizedBox() : const SizedBox(
+              isLandscape ? const SizedBox() : const SizedBox(
                 height: 48,
               ),
               SingleChildScrollView(
@@ -109,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                           }
                         },
                       ),
-                      isLandscape ? SizedBox(height: 10) : const SizedBox(
+                      isLandscape ? const SizedBox(height: 10) : const SizedBox(
                         height: 32,
                       ),
                       Container(
@@ -127,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
                                     : Icons.visibility_off_outlined),
                                 onPressed: togglePassword,
                               ),
-                              errorBorder: OutlineInputBorder(
+                              errorBorder: const OutlineInputBorder(
                                   borderSide:
                                       BorderSide(color: Colors.red, width: 5))),
                           validator: (val) {
@@ -141,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              isLandscape ? SizedBox(height: 15,) : const SizedBox(
+              isLandscape ? const SizedBox(height: 15,) : const SizedBox(
                 height: 62,
               ),
               Center(

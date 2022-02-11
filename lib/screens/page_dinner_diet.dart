@@ -38,10 +38,6 @@ class _DinnerDietPageState extends State<DinnerDietPage> {
 
   _fetchDiet() async {
     SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
-      debugPrint(
-          "Call loadDietLunch for Admin ${context
-              .read<User>()
-              .username}");
       context.read<DietPageController>().loadDietDinner(
           context
               .read<AdminController>()
@@ -61,15 +57,13 @@ class _DinnerDietPageState extends State<DinnerDietPage> {
     return Scaffold(
       appBar: context
           .read<User>()
-          .username == "Admin" ? AppBar(title: Text('Cena')) : null,
+          .username == "Admin" ? AppBar(title: const Text('Cena')) : null,
       floatingActionButton: context
           .read<User>()
           .username == "Admin" ? FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () async {
           debugPrint("Hai Cliccato il floating button");
-          //await context.read<ToDoList>().add("Nuova cosa da fare");
-
           Navigator.of(context)
               .push(
               MaterialPageRoute(builder: (context) => AddNewDinnerDiet()))
@@ -79,7 +73,7 @@ class _DinnerDietPageState extends State<DinnerDietPage> {
       body: Stack(
           fit: StackFit.expand,
           children: [
-          DietDinnerWidget(),
+          const DietDinnerWidget(),
       context
           .read<User>()
           .username == "Admin"
@@ -95,7 +89,7 @@ class _DinnerDietPageState extends State<DinnerDietPage> {
           },
         ),
       )
-          : SizedBox(),
+          : const SizedBox(),
       ],
     ));
   }

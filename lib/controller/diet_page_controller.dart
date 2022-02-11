@@ -32,7 +32,6 @@ class DietPageController extends ChangeNotifier {
   Diet? get currentLunchDiet => _currentLunchDiet;
 
   Future loadDietLunch(String? username, [bool force = false]) async {
-    debugPrint("IsLoadingLunch ${_isLoading.toString()}");
     if (_isLoading) return;
 
     _isLoading = true;
@@ -44,10 +43,6 @@ class DietPageController extends ChangeNotifier {
       _dietLunchList = list;
 
       final current = await DietProvider.loadCurrentLunchDiet(username);
-
-      debugPrint("currentToString");
-      debugPrint(current.toString());
-
 
       if (current.id != "") {
         _currentLunchDiet = current;
@@ -62,7 +57,6 @@ class DietPageController extends ChangeNotifier {
   }
 
   Future loadDietDinner(String? username, [bool force = false]) async {
-    debugPrint("IsLoadingDinner ${_isLoading.toString()}");
     if (_isLoading) return;
 
     _isLoading = true;
@@ -71,7 +65,6 @@ class DietPageController extends ChangeNotifier {
     try {
       final list = await DietProvider.loadDinnerDiet(username!);
       _dietDinnerList = list;
-      debugPrint(list.toString());
 
       final current = await DietProvider.loadCurrentDinnerDiet(username);
       if (current.id != "") {

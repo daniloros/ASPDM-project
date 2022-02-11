@@ -16,14 +16,10 @@ class UserDetailsWidget extends StatefulWidget {
 }
 
 class _UserDetailsWidgetState extends State<UserDetailsWidget> {
+
+  @override
   void initState() {
     super.initState();
-
-    // SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
-    //   context.read<AdminController>().loadUserDetails(widget.user!.id);
-    // });
-
-    //_fetchNotes();
   }
 
   _fetchNotes() async {
@@ -34,9 +30,6 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // var newWeigth, newLeanMass, newBodyFat, newHydro, newBMR;
-    // var resultUpdateUser;
-
     final isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
 
@@ -89,7 +82,7 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                                   ),
                                                 )),
                                                 DataCell(Text(userDetails.name!,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                   fontSize: 18,
                                                 )
                                                     )),
@@ -103,7 +96,7 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                                     ))),
                                                 DataCell(
                                                     Text(userDetails.surname!,
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           fontSize: 18,
                                                         ))),
                                               ]),
@@ -117,7 +110,7 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                                         ))),
                                                 DataCell(
                                                     Text(userDetails.birthday!,
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           fontSize: 18,
                                                         ))),
                                               ]),
@@ -132,7 +125,7 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                                   Text(
                                                       userDetails.weight
                                                           .toString(),
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                         fontSize: 18,
                                                       )),
                                                 ),
@@ -149,7 +142,7 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                                   Text(
                                                       userDetails.leanMass
                                                           .toString(),
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                         fontSize: 18,
                                                       )),
                                                 ),
@@ -166,7 +159,7 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                                   Text(
                                                       userDetails.bodyFat
                                                           .toString(),
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                         fontSize: 18,
                                                       )),
                                                 ),
@@ -183,7 +176,7 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                                   Text(
                                                       userDetails.hydro
                                                           .toString(),
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                         fontSize: 18,
                                                       )),
                                                 ),
@@ -199,7 +192,7 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                                   Text(
                                                       userDetails.bmr
                                                           .toString(),
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                         fontSize: 18,
                                                       )),
                                                 ),
@@ -249,7 +242,7 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                                   ),
                                                 )),
                                                 DataCell(Text(userDetails.name!,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       fontSize: 18,
                                                     ))),
                                               ]),
@@ -262,7 +255,7 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                                     ))),
                                                 DataCell(
                                                     Text(userDetails.surname!,
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           fontSize: 18,
                                                         ))),
                                               ]),
@@ -276,7 +269,7 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                                         ))),
                                                 DataCell(
                                                     Text(userDetails.birthday!,
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           fontSize: 18,
                                                         ))),
                                               ]),
@@ -291,7 +284,7 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                                   Text(
                                                       userDetails.weight
                                                           .toString(),
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                         fontSize: 18,
                                                       )),
                                                 ),
@@ -308,7 +301,7 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                                   Text(
                                                       userDetails.leanMass
                                                           .toString(),
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                         fontSize: 18,
                                                       )),
                                                 ),
@@ -325,7 +318,7 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                                   Text(
                                                       userDetails.bodyFat
                                                           .toString(),
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                         fontSize: 18,
                                                       )),
                                                 ),
@@ -342,7 +335,7 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                                   Text(
                                                       userDetails.hydro
                                                           .toString(),
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                         fontSize: 18,
                                                       )),
                                                 ),
@@ -358,7 +351,7 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                                   Text(
                                                       userDetails.bmr
                                                           .toString(),
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                         fontSize: 18,
                                                       )),
                                                 ),

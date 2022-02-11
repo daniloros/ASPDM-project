@@ -60,7 +60,7 @@ class _AddNewLunchDietState extends State<AddNewLunchDiet> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Dettagli dieta"),
+        title: const Text("Dettagli dieta"),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -258,9 +258,8 @@ class _AddNewLunchDietState extends State<AddNewLunchDiet> {
                   ],
                 ),
                 ElevatedButton(
-                  child: Text('Conferma'),
+                  child: const Text('Conferma'),
                   onPressed: () async {
-                    debugPrint("Press");
 
                     int? carboGr = int.tryParse(controllerCarboGr.text);
                     int? proteinGr = int.tryParse(controllerProteinGr.text);
@@ -269,11 +268,10 @@ class _AddNewLunchDietState extends State<AddNewLunchDiet> {
 
                     currentDiet =
                         context.read<DietPageController>().currentLunchDiet;
-                    debugPrint(currentDiet.toString());
 
                     if (_formKey.currentState!.validate()) {
                       if (currentDiet != null) {
-                        debugPrint("Archiviamo la dieta");
+
                         var userId = currentDiet!.userId;
                         response = await AdminProvider.archiveLunchDiet(
                             currentDiet!.id!);
@@ -290,9 +288,19 @@ class _AddNewLunchDietState extends State<AddNewLunchDiet> {
                               isCurrent: true,
                               carboGr: carboGr,
                               carbo: controllerCarboType.text);
+
                           response =
                               await AdminProvider.addNewLunchDiet(newDiet);
-                          debugPrint(response.toString());
+
+                          if (response) {
+                            const snackBar =
+                            SnackBar(content: Text("Dieta Aggiunta Correttamente"));
+                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          } else {
+                            const snackBar = SnackBar(content: Text("Errore"));
+                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          }
+
                         }
                       } else {
                         debugPrint("Else situation");
@@ -313,14 +321,18 @@ class _AddNewLunchDietState extends State<AddNewLunchDiet> {
                             carbo: controllerCarboType.text);
 
                         response = await AdminProvider.addNewLunchDiet(newDiet);
-                        debugPrint(response.toString());
-                      }
 
-                      debugPrint(context
-                          .read<DietPageController>()
-                          .currentLunchDiet!
-                          .id
-                          .toString());
+                        if (response) {
+                          const snackBar =
+                          SnackBar(content: Text("Dieta Aggiunta Correttamente"));
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        } else {
+                          const snackBar = SnackBar(content: Text("Errore"));
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        }
+
+
+                      }
 
                       Navigator.of(context).pop();
                     }

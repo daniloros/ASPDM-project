@@ -4,7 +4,7 @@ import 'package:healty/model/diet.dart';
 class DietDetails extends StatelessWidget {
   final Diet dietDetails;
 
-  DietDetails(this.dietDetails);
+  const DietDetails(this.dietDetails);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class DietDetails extends StatelessWidget {
 
     return Scaffold(
       appBar: isLandscape ? null : AppBar(
-        title: Text("Dieta"),
+        title: const Text("Dieta"),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -25,7 +25,6 @@ class DietDetails extends StatelessWidget {
                   child: Column(
                     children: [
                       Table(
-                        //border: TableBorder.all(color: Colors.black),
                         children: [
                           TableRow(children: [
                             Padding(

@@ -4,7 +4,7 @@ import 'package:healty/model/user.dart';
 class UserListWidget extends StatelessWidget {
   final User user;
 
-  UserListWidget(this.user);
+  const UserListWidget(this.user);
 
   @override
   Widget build(BuildContext context) {

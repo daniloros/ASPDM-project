@@ -1,8 +1,10 @@
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:healty/model/user.dart';
 import 'package:healty/providers/admin_provider.dart';
+import 'package:intl/intl.dart';
 
 class AddNewUser extends StatefulWidget {
   @override
@@ -14,6 +16,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
   int currentStep = 0;
   bool isCompleted = false;
   bool isObscure = true;
+  DateTime? selectedDate;
 
   late TextEditingController controllerName,
       controllerSurname,
@@ -62,10 +65,12 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Nuovo cliente"),
+          title: const Text("Nuovo cliente"),
         ),
         body: isCompleted
-            ? Container(child: Image.asset("assets/images/clessidra.png"),)
+            ? Container(
+                child: Image.asset("assets/images/clessidra.png"),
+              )
             : Stepper(
                 type: StepperType.horizontal,
                 steps: getSteps(),
@@ -74,7 +79,6 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                   final isLastStep = currentStep == getSteps().length - 1;
 
                   if (isLastStep) {
-                    debugPrint("Si");
                     setState(() => isCompleted = true);
 
                     double? weight = double.tryParse(controllerWeight.text);
@@ -83,16 +87,16 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                     double? hydro = double.tryParse(controllerHydro.text);
                     int? bmr = int.tryParse(controllerBmr.text);
 
-                    debugPrint(weight.toString());
-                    debugPrint(leanMass.toString());
-                    debugPrint(bodyFat.toString());
-                    debugPrint(hydro.toString());
-                    debugPrint(bmr.toString());
 
                     var checkUser = await AdminProvider.checkUserExist(
                         controllerUsername.text);
-                    debugPrint("checkUser: $checkUser");
+
                     if (checkUser) {
+
+                      DateTime selectDate = DateTime.parse(controllerBirthday.text);
+                      String formatDate = DateFormat('dd/MM/yyyy').format(selectDate);
+                      controllerBirthday.text = formatDate;
+
                       var newUser = User(
                           password: controllerPassword.text,
                           admin: false,
@@ -106,9 +110,8 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                           surname: controllerSurname.text,
                           birthday: controllerBirthday.text);
 
-                      debugPrint("New user: ${newUser.toString()}");
                       response = await AdminProvider.addNewUser(newUser);
-                      debugPrint(response.toString());
+
                       if (response) {
                         const snackBar = SnackBar(
                             content: Text("Utente aggiunto correttamente"));
@@ -119,8 +122,8 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                       }
                       Navigator.of(context).pop();
                     } else {
-                      const snackBar = SnackBar(
-                          content: Text("Username già in uso"));
+                      const snackBar =
+                          SnackBar(content: Text("Username già in uso"));
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       Navigator.of(context).pop();
                     }
@@ -138,7 +141,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                 controlsBuilder: (context, {onStepContinue, onStepCancel}) {
                   final isLastStep = currentStep == getSteps().length - 1;
                   return Container(
-                    margin: EdgeInsets.only(top: 30),
+                    margin: const EdgeInsets.only(top: 30),
                     child: Row(
                       children: [
                         if (currentStep != 0)
@@ -168,7 +171,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
         Step(
           state: currentStep > 0 ? StepState.complete : StepState.indexed,
           isActive: currentStep >= 0,
-          title: Text("Dati"),
+          title: const Text("Dati"),
           content: SingleChildScrollView(
             child: Form(
               key: _formKey,
@@ -210,16 +213,19 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10),
-                    child: TextFormField(
+                    child: DateTimePicker(
                       controller: controllerBirthday,
+                      firstDate: DateTime(1900),
+                      lastDate: DateTime(2100),
                       decoration: const InputDecoration(
-                          labelText: "Data di Nascita (gg/aa/yyyy)",
+                          labelText: "Data di Nascita",
                           border: OutlineInputBorder(),
                           errorBorder: OutlineInputBorder(
                               borderSide:
                                   BorderSide(color: Colors.red, width: 5))),
-                      validator: (value) {
-                        if (value!.isEmpty) {
+                      dateLabelText: 'Date',
+                      validator: (val) {
+                        if (val!.isEmpty) {
                           return "Questo campo è obbligatorio";
                         }
                       },
@@ -233,7 +239,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
         Step(
           state: currentStep > 1 ? StepState.complete : StepState.indexed,
           isActive: currentStep >= 1,
-          title: Text("Signup"),
+          title: const Text("Signup"),
           content: SingleChildScrollView(
             child: Form(
               key: _formKey,
@@ -275,15 +281,16 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                             });
                           },
                         ),
-                        border: OutlineInputBorder(),
-                        errorBorder: OutlineInputBorder(
+                        border: const OutlineInputBorder(),
+                        errorBorder: const OutlineInputBorder(
                             borderSide:
                                 BorderSide(color: Colors.red, width: 5)),
                       ),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Questo campo è obbligatorio";
-                        } if (value.length < 3) {
+                        }
+                        if (value.length < 3) {
                           return "Inserire almeno 3 caratteri";
                         }
                       },
@@ -297,7 +304,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
         Step(
           state: currentStep > 2 ? StepState.complete : StepState.indexed,
           isActive: currentStep >= 2,
-          title: Text("Check"),
+          title: const Text("Check"),
           content: SingleChildScrollView(
             child: Form(
               key: _formKey,
@@ -416,7 +423,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
         Step(
           state: currentStep > 3 ? StepState.complete : StepState.indexed,
           isActive: currentStep >= 3,
-          title: Text("Confema"),
+          title: const Text("Confema"),
           content: SingleChildScrollView(
             child: Container(
               margin: const EdgeInsets.all(8),
@@ -432,7 +439,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 15),
                               child: Column(
-                                children: [
+                                children: const [
                                   Text("Nome:",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -445,7 +452,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                               children: [
                                 Text(
                                   controllerName.text,
-                                  style: TextStyle(fontSize: 20),
+                                  style: const TextStyle(fontSize: 20),
                                 ),
                               ],
                             ),
@@ -454,7 +461,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 15),
                               child: Column(
-                                children: [
+                                children: const [
                                   Text("Cognome:",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -467,7 +474,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                               children: [
                                 Text(
                                   controllerSurname.text,
-                                  style: TextStyle(fontSize: 20),
+                                  style: const TextStyle(fontSize: 20),
                                 ),
                               ],
                             ),
@@ -476,7 +483,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 15),
                               child: Column(
-                                children: [
+                                children: const [
                                   Text("Data di Nascita:",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -487,9 +494,15 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
-                                  controllerBirthday.text,
-                                  style: TextStyle(fontSize: 20),
+                                Builder(
+                                  builder: (context) {
+                                    DateTime selectDate = DateTime.parse(controllerBirthday.text);
+                                    String formatDate = DateFormat('dd/MM/yyyy').format(selectDate);
+                                    return Text(
+                                      formatDate,
+                                      style: const TextStyle(fontSize: 20),
+                                    );
+                                  }
                                 ),
                               ],
                             ),
@@ -498,7 +511,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 15),
                               child: Column(
-                                children: [
+                                children: const [
                                   Text("Username:",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -511,7 +524,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                               children: [
                                 Text(
                                   controllerUsername.text,
-                                  style: TextStyle(fontSize: 20),
+                                  style: const TextStyle(fontSize: 20),
                                 ),
                               ],
                             ),
@@ -520,7 +533,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 15),
                               child: Column(
-                                children: [
+                                children: const [
                                   Text("Password:",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -541,7 +554,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                                       '*' * (passwordSize - 1));
                                   return Text(
                                     passwordToShow,
-                                    style: TextStyle(fontSize: 20),
+                                    style: const TextStyle(fontSize: 20),
                                   );
                                 }),
                               ],
@@ -551,7 +564,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 15),
                               child: Column(
-                                children: [
+                                children: const [
                                   Text("Peso:",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -564,7 +577,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                               children: [
                                 Text(
                                   "${controllerWeight.text} kg",
-                                  style: TextStyle(fontSize: 20),
+                                  style: const TextStyle(fontSize: 20),
                                 ),
                               ],
                             ),
@@ -573,7 +586,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 15),
                               child: Column(
-                                children: [
+                                children: const [
                                   Text("Kg Massa Magra:",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -586,7 +599,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                               children: [
                                 Text(
                                   "${controllerLeanMass.text} kg",
-                                  style: TextStyle(fontSize: 20),
+                                  style: const TextStyle(fontSize: 20),
                                 ),
                               ],
                             ),
@@ -595,7 +608,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 15),
                               child: Column(
-                                children: [
+                                children: const [
                                   Text("% Massa Grassa:",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -608,7 +621,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                               children: [
                                 Text(
                                   "${controllerBodyFat.text} %",
-                                  style: TextStyle(fontSize: 20),
+                                  style: const TextStyle(fontSize: 20),
                                 ),
                               ],
                             ),
@@ -617,7 +630,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 15),
                               child: Column(
-                                children: [
+                                children: const [
                                   Text("% Idratazione:",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -630,7 +643,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                               children: [
                                 Text(
                                   "${controllerHydro.text} %",
-                                  style: TextStyle(fontSize: 20),
+                                  style: const TextStyle(fontSize: 20),
                                 ),
                               ],
                             ),
@@ -639,7 +652,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 15),
                               child: Column(
-                                children: [
+                                children: const [
                                   Text("BMR:",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -652,7 +665,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                               children: [
                                 Text(
                                   "${controllerBmr.text} kcal",
-                                  style: TextStyle(fontSize: 20),
+                                  style: const TextStyle(fontSize: 20),
                                 ),
                               ],
                             ),

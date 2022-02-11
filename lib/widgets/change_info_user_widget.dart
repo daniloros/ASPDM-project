@@ -162,7 +162,7 @@ class _ChangeInfoUserState extends State<ChangeInfoUser> {
                     },
                   ),
                 ),
-                SizedBox(height: 20,),
+                const SizedBox(height: 20,),
                 ElevatedButton(
                   child: const Text('Conferma'),
                   onPressed: () async {
@@ -210,11 +210,11 @@ class _ChangeInfoUserState extends State<ChangeInfoUser> {
                           surname: widget.user.surname,
                           name: widget.user.name,
                           username: widget.user.username);
+
                       response = await AdminProvider.updateUser(modifyUser);
-                      debugPrint(widget.user.weight.toString());
+
                       if (response) {
                         widget.user = modifyUser;
-                        debugPrint(widget.user.weight.toString());
                         const snackBar =
                             SnackBar(content: Text("Modifica effettuata"));
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);

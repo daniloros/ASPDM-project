@@ -25,9 +25,6 @@ class _LunchDietPage extends State<LunchDietPage> {
 
     if (typeUser != "Admin") {
       SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
-        debugPrint("Call loadDietLunch ${context
-            .read<User>()
-            .username}");
         context
             .read<DietPageController>()
             .loadDietLunch(context
@@ -41,11 +38,6 @@ class _LunchDietPage extends State<LunchDietPage> {
 
   _fetchDiet() async {
     SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
-      debugPrint(
-          "Call loadDietLunch for Admin ${context
-              .read<AdminController>()
-              .userDetails!
-              .username}");
       context
           .read<DietPageController>()
           .loadDietLunch(context
@@ -67,7 +59,7 @@ class _LunchDietPage extends State<LunchDietPage> {
       appBar: context
           .read<User>()
           .username == "Admin"
-          ? AppBar(title: Text('Pranzo'))
+          ? AppBar(title: const Text('Pranzo'))
           : null,
       floatingActionButton: context
           .read<User>()
@@ -75,10 +67,9 @@ class _LunchDietPage extends State<LunchDietPage> {
           ? FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () async {
-          debugPrint("Hai Cliccato il floating button");
           Navigator.of(context)
               .push(MaterialPageRoute(
-              builder: (context) => AddNewLunchDiet()))
+              builder: (context) => const AddNewLunchDiet()))
               .then((userDetails) => _fetchDiet());
         },
       )
@@ -86,7 +77,7 @@ class _LunchDietPage extends State<LunchDietPage> {
       body: Stack(
           fit: StackFit.expand,
           children: [
-          DietLunchWidget(),
+          const DietLunchWidget(),
       context
           .read<User>()
           .username == "Admin"
@@ -102,7 +93,7 @@ class _LunchDietPage extends State<LunchDietPage> {
           },
         ),
       )
-          : SizedBox(),
+          : const SizedBox(),
       ],
     ));
   }
