@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:healty/controller/admin_controller.dart';
 import 'package:healty/controller/diet_page_controller.dart';
+import 'package:healty/controller/login_controller.dart';
 import 'package:healty/model/user.dart';
 import 'package:healty/providers/admin_provider.dart';
 import 'package:healty/screens/settings_page.dart';
@@ -39,12 +40,13 @@ class _AdminPageState extends State<AdminPage> {
     return Scaffold(
         backgroundColor: const Color(0xFFE9E9E9),
         appBar: AppBar(
-          title: Text("Admin"),
+          title: const Text("Admin"),
           actions: [
             IconButton(
               onPressed: () {
                 context.read<User>().logout();
                 context.read<DietPageController>().logout();
+                context.read<LoginController>().logout();
               },
               icon: const Icon(Icons.logout),
               tooltip: "Logout",

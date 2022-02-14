@@ -65,7 +65,12 @@ class _DietPageState extends State<DietPage>
                 selector: (context, state) => state.isLoading,
                 builder: (context, isLoading, _) {
                   if (isLoading) {
-                    return const CircularProgressIndicator();
+                    return Container(
+                      color: Colors.white,
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,
+                      child: const Center(child: CircularProgressIndicator()),
+                    );
                   } else {
                     return const SizedBox.shrink();
                   }

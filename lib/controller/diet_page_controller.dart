@@ -31,11 +31,25 @@ class DietPageController extends ChangeNotifier {
 
   Diet? get currentLunchDiet => _currentLunchDiet;
 
+  DateTime _dietLunchLastLoad = DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true);
+  DateTime _dietDinnerLastLoad = DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true);
+
   Future loadDietLunch(String? username, [bool force = false]) async {
     if (_isLoading) return;
 
+    final target = _dietLunchLastLoad.add(const Duration(minutes: 1));
+
+    debugPrint(target.toString());
+
+    if(!force && DateTime.now().toUtc().isBefore(target)){
+      debugPrint("Too early, not loading");
+      return;
+    }
+
     _isLoading = true;
     notifyListeners();
+
+
 
     try {
       final list = await DietProvider.loadLunchDiet(username!);
@@ -43,6 +57,8 @@ class DietPageController extends ChangeNotifier {
       _dietLunchList = list;
 
       final current = await DietProvider.loadCurrentLunchDiet(username);
+
+      _dietLunchLastLoad = DateTime.now().toUtc();
 
       if (current.id != "") {
         _currentLunchDiet = current;
@@ -59,6 +75,13 @@ class DietPageController extends ChangeNotifier {
   Future loadDietDinner(String? username, [bool force = false]) async {
     if (_isLoading) return;
 
+    final target = _dietDinnerLastLoad.add(const Duration(minutes: 1));
+
+    if(!force && DateTime.now().toUtc().isBefore(target)){
+      debugPrint("Too early, not loading");
+      return;
+    }
+
     _isLoading = true;
     notifyListeners();
 
@@ -67,6 +90,8 @@ class DietPageController extends ChangeNotifier {
       _dietDinnerList = list;
 
       final current = await DietProvider.loadCurrentDinnerDiet(username);
+
+      _dietDinnerLastLoad = DateTime.now().toUtc();
       if (current.id != "") {
         _currentDinnerDiet = current;
       } else {

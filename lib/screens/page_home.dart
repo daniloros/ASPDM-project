@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:healty/controller/diet_page_controller.dart';
+import 'package:healty/controller/login_controller.dart';
 import 'package:healty/model/user.dart';
 import 'package:healty/screens/page_diet.dart';
 import 'package:healty/screens/page_summary_page.dart';
@@ -71,6 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 {
                   context.read<User>().logout();
                   context.read<DietPageController>().logout();
+                  context.read<LoginController>().logout();
                 }
                 break;
             }
@@ -91,31 +93,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class DoingLogout extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: const Text('Attenzione'),
-      content: const Text("Sei sicuro di voler effettuare il Logout?"),
-      actions: <Widget>[
-        ElevatedButton(
-          child: const Text('Si'),
-          onPressed: () {
-            context.read<User>().logout();
-            context.read<DietPageController>().logout();
-          },
-        ),
-        ElevatedButton(
-          child: const Text('No'),
-          onPressed: () {
-            Navigator.of(context).pop(false);
-          },
-        ),
-      ],
     );
   }
 }

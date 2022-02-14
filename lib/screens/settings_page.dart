@@ -27,11 +27,7 @@ class _SettingsScreenState extends State<SettingsPage> {
     SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
       context.read<AdminController>().loadUserDetails(widget.user!.id);
     });
-    ;
   }
-
-  bool lockInBackground = true;
-  bool notificationsEnabled = true;
 
   @override
   Widget build(BuildContext context) {

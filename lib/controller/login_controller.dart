@@ -31,4 +31,11 @@ class LoginController extends ChangeNotifier{
     notifyListeners();
 
   }
+
+  Future<void> logout() async {
+    _currentUser = null;
+    _isLoading = false;
+
+    notifyListeners();
+  }
 }

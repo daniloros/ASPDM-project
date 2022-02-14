@@ -43,7 +43,7 @@ class _LunchDietPage extends State<LunchDietPage> {
           .loadDietLunch(context
           .read<AdminController>()
           .userDetails!
-          .username);
+          .username, true);
     });
   }
 
@@ -86,7 +86,13 @@ class _LunchDietPage extends State<LunchDietPage> {
           selector: (context, state) => state.isLoading,
           builder: (context, isLoading, _) {
             if (isLoading) {
-              return const CircularProgressIndicator();
+              return Container(
+                color: Colors.white,
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: const Center(child: CircularProgressIndicator()),
+              );
+              //return const CircularProgressIndicator();
             } else {
               return const SizedBox.shrink();
             }

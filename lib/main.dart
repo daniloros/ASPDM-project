@@ -33,11 +33,6 @@ class MyApp extends StatelessWidget {
         title: "My first Flutter app",
         theme: ThemeData(primarySwatch: Colors.blue),
         home: LoginSwitcher(),
-        // routes: {
-        //   '/summary' : (context) => const Summary(),
-        //   '/myDiet': (context) =>  DietPage(),
-        //   '/addNewDiet': (context) => const AddNewDiet(),
-        // },
       ),
     );
   }
