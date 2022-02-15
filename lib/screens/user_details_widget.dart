@@ -17,6 +17,8 @@ class UserDetailsWidget extends StatefulWidget {
 
 class _UserDetailsWidgetState extends State<UserDetailsWidget> {
 
+  bool isCompleted = false;
+
   @override
   void initState() {
     super.initState();
@@ -25,6 +27,7 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
   _fetchNotes() async {
     SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
       context.read<AdminController>().loadUserDetails(widget.user!.id);
+      isCompleted = false;
     });
   }
 
@@ -39,7 +42,11 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
           if (value == null) {
             return const SizedBox();
           } else {
-            return Column(
+            return isCompleted
+                ? Container(color: Colors.white,
+              child: Image.asset("assets/images/clessidra.png", ),
+            )
+                : Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
@@ -210,8 +217,10 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                                       ChangeInfoUser(
                                                         user: userDetails,
                                                       )))
-                                              .then((userDetails) =>
-                                                  _fetchNotes());
+                                              .then((userDetails) {
+                                                 setState(() => isCompleted = true);
+                                                return _fetchNotes();
+                                              });
                                         },
                                         child: const Text(
                                             "Modifica")),
@@ -369,8 +378,10 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                                                       ChangeInfoUser(
                                                         user: userDetails,
                                                       )))
-                                              .then((userDetails) =>
-                                                  _fetchNotes());
+                                              .then((userDetails) {
+                                                setState(() => isCompleted = true);
+                                                return _fetchNotes();
+                                              });
                                         },
                                         child: const Text(
                                             "Modifica")),
