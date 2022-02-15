@@ -93,7 +93,7 @@ Dove sarà possibile: <br>
 
 Cliccando il tasto **Modifica** sarà possibile modificare i dati della composizione corporea con i nuovi dati provenienti dalla bioimpedenza. <br>
 Nel caso in cui uno di questi campi risultasse vuoto viene mostrato un messaggio di errore. Altrimenti si prosegue con la modifica dei dati:
-<p align="center"><img src="docs/images/admin_modify_user.gif" width="200"/> </p>
+<p align="center"><img src="docs/images/modify_user_value.gif.gif" width="200"/> </p>
 
 <br>
 
