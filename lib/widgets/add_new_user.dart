@@ -315,9 +315,9 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                     child: TextFormField(
                       controller: controllerWeight,
                       keyboardType: TextInputType.number,
-                      inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.digitsOnly
-                      ],
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
+                        ],
                       decoration: const InputDecoration(
                           labelText: "Peso in KG",
                           border: OutlineInputBorder(),
@@ -328,6 +328,14 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                         if (value!.isEmpty) {
                           return "Questo campo è obbligatorio";
                         }
+                        if(value.contains(".")){
+                          int n = value.length;
+                          for (int i = 1; i < n; i++) {
+                            if (((value[i] == ".") && (value[i-1] == ".") ) && (value[i] == value[i-1])) {
+                              return "valore errato";
+                            }
+                          }
+                        }
                       },
                     ),
                   ),
@@ -337,7 +345,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                       controller: controllerLeanMass,
                       keyboardType: TextInputType.number,
                       inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.digitsOnly
+                        FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
                       ],
                       decoration: const InputDecoration(
                           labelText: "Kg Massa Magra",
@@ -349,6 +357,14 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                         if (value!.isEmpty) {
                           return "Questo campo è obbligatorio";
                         }
+                        if(value.contains(".")){
+                          int n = value.length;
+                          for (int i = 1; i < n; i++) {
+                            if (((value[i] == ".") && (value[i-1] == ".") ) && (value[i] == value[i-1])) {
+                              return "valore errato";
+                            }
+                          }
+                        }
                       },
                     ),
                   ),
@@ -358,7 +374,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                       controller: controllerBodyFat,
                       keyboardType: TextInputType.number,
                       inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.digitsOnly
+                        FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
                       ],
                       decoration: const InputDecoration(
                           labelText: "% Massa Grassa",
@@ -370,6 +386,14 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                         if (value!.isEmpty) {
                           return "Questo campo è obbligatorio";
                         }
+                        if(value.contains(".")){
+                          int n = value.length;
+                          for (int i = 1; i < n; i++) {
+                            if (((value[i] == ".") && (value[i-1] == ".") ) && (value[i] == value[i-1])) {
+                              return "valore errato";
+                            }
+                          }
+                        }
                       },
                     ),
                   ),
@@ -379,7 +403,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                       controller: controllerHydro,
                       keyboardType: TextInputType.number,
                       inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.digitsOnly
+                        FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
                       ],
                       decoration: const InputDecoration(
                           labelText: "% Idratazione",
@@ -391,6 +415,14 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                         if (value!.isEmpty) {
                           return "Questo campo è obbligatorio";
                         }
+                        if(value.contains(".")){
+                          int n = value.length;
+                          for (int i = 1; i < n; i++) {
+                            if (((value[i] == ".") && (value[i-1] == ".") ) && (value[i] == value[i-1])) {
+                              return "valore errato";
+                            }
+                          }
+                        }
                       },
                     ),
                   ),
@@ -400,7 +432,7 @@ class _AddNewDinnerDietState extends State<AddNewUser> {
                       controller: controllerBmr,
                       keyboardType: TextInputType.number,
                       inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.digitsOnly
+                        FilteringTextInputFormatter.digitsOnly,
                       ],
                       decoration: const InputDecoration(
                           labelText: "kcal BMR",

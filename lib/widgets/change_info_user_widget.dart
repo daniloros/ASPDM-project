@@ -59,7 +59,7 @@ class _ChangeInfoUserState extends State<ChangeInfoUser> {
                     controller: controllerWeight,
                     keyboardType: TextInputType.number,
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
+                      FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
                     ],
                     decoration: const InputDecoration(
                         labelText: "Peso in KG",
@@ -71,6 +71,14 @@ class _ChangeInfoUserState extends State<ChangeInfoUser> {
                       if (value!.isEmpty) {
                         return "Questo campo è obbligatorio";
                       }
+                      if(value.contains(".")){
+                        int n = value.length;
+                        for (int i = 1; i < n; i++) {
+                          if (((value[i] == ".") && (value[i-1] == ".") ) && (value[i] == value[i-1])) {
+                            return "valore errato";
+                          }
+                        }
+                      }
                     },
                   ),
                 ),
@@ -81,7 +89,7 @@ class _ChangeInfoUserState extends State<ChangeInfoUser> {
                     controller: controllerLean,
                     keyboardType: TextInputType.number,
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
+                      FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
                     ],
                     decoration: const InputDecoration(
                         labelText: "KG di Massa Magra",
@@ -93,6 +101,14 @@ class _ChangeInfoUserState extends State<ChangeInfoUser> {
                       if (value!.isEmpty) {
                         return "Questo campo è obbligatorio";
                       }
+                      if(value.contains(".")){
+                        int n = value.length;
+                        for (int i = 1; i < n; i++) {
+                          if (((value[i] == ".") && (value[i-1] == ".") ) && (value[i] == value[i-1])) {
+                            return "valore errato";
+                          }
+                        }
+                      }
                     },
                   ),
                 ),
@@ -103,7 +119,7 @@ class _ChangeInfoUserState extends State<ChangeInfoUser> {
                     controller: controllerFat,
                     keyboardType: TextInputType.number,
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
+                      FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
                     ],
                     decoration: const InputDecoration(
                         labelText: "% Massa Grassa",
@@ -115,6 +131,14 @@ class _ChangeInfoUserState extends State<ChangeInfoUser> {
                       if (value!.isEmpty) {
                         return "Questo campo è obbligatorio";
                       }
+                      if(value.contains(".")){
+                        int n = value.length;
+                        for (int i = 1; i < n; i++) {
+                          if (((value[i] == ".") && (value[i-1] == ".") ) && (value[i] == value[i-1])) {
+                            return "valore errato";
+                          }
+                        }
+                      }
                     },
                   ),
                 ),
@@ -125,7 +149,7 @@ class _ChangeInfoUserState extends State<ChangeInfoUser> {
                     controller: controllerHydro,
                     keyboardType: TextInputType.number,
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
+                      FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
                     ],
                     decoration: const InputDecoration(
                         labelText: "% Idratazione",
@@ -137,6 +161,14 @@ class _ChangeInfoUserState extends State<ChangeInfoUser> {
                       if (value!.isEmpty) {
                         return "Questo campo è obbligatorio";
                       }
+                      if(value.contains(".")){
+                        int n = value.length;
+                        for (int i = 1; i < n; i++) {
+                          if (((value[i] == ".") && (value[i-1] == ".") ) && (value[i] == value[i-1])) {
+                            return "valore errato";
+                          }
+                        }
+                      }
                     },
                   ),
                 ),
@@ -147,7 +179,7 @@ class _ChangeInfoUserState extends State<ChangeInfoUser> {
                     controller: controllerBMR,
                     keyboardType: TextInputType.number,
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
+                      FilteringTextInputFormatter.digitsOnly,
                     ],
                     decoration: const InputDecoration(
                         labelText: "kcal BMR",

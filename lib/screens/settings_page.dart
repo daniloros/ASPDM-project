@@ -18,22 +18,32 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsPage> {
+
+  bool isCompleted = false;
+
   void initState() {
     super.initState();
+    isCompleted = true;
     _fetchNotes();
   }
 
   _fetchNotes() async {
     SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
-      context.read<AdminController>().loadUserDetails(widget.user!.id);
+      context.read<AdminController>().loadUserDetails(widget.user!.id).whenComplete(() => setState(() {isCompleted=false;}));
     });
   }
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Dettagli ')),
-      body: buildSettingsList(),
+      body: isCompleted
+          ? Container(
+               child: Image.asset("assets/images/clessidra.png", ),
+            )
+          : buildSettingsList(),
     );
   }
 

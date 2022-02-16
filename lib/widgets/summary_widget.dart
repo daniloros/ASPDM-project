@@ -242,15 +242,32 @@ class _RadialPainter extends CustomPainter {
     canvas.drawArc(Rect.fromCircle(center: center, radius: size.width / 2),
         math.radians(100), math.radians(relativeProgress), false, paint);
 
-    canvas.drawArc(
-        Rect.fromCircle(center: center, radius: size.width / 2),
-        math.radians(50),
-        math.radians(((user!.bodyFat! * user!.weight!) / 100)),
-        false,
-        paint2);
+    if(user!.leanMass! > ((user!.bodyFat! * user!.weight!) / 100)) {
+      canvas.drawArc(Rect.fromCircle(center: center, radius: size.width / 2),
+          math.radians(65), math.radians(340 - (user!.leanMass!)), false,
+          paint2);
 
-    canvas.drawArc(Rect.fromCircle(center: center, radius: size.width / 2),
-        math.radians(65), math.radians(360 - (user!.leanMass!)), false, paint3);
+      canvas.drawArc(
+          Rect.fromCircle(center: center, radius: size.width / 2),
+          math.radians(50),
+          math.radians(280 - ((user!.bodyFat! * user!.weight!) / 100)),
+          false,
+          paint3);
+    } else {
+
+      canvas.drawArc(Rect.fromCircle(center: center, radius: size.width / 2),
+          math.radians(65), math.radians(340 - (user!.leanMass!)), false,
+          paint3);
+
+      canvas.drawArc(
+          Rect.fromCircle(center: center, radius: size.width / 2),
+          math.radians(50),
+          math.radians(280 - ((user!.bodyFat! * user!.weight!) / 100)),
+          false,
+          paint2);
+
+
+    }
 
   }
 
